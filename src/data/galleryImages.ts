@@ -11,13 +11,13 @@ import patioChair4 from '../assets/products/patio-chairs/patio-chair-4.jpg';
 import welcomePlanterStand1 from '../assets/products/welcome-planter-stand/welcome-planter-stand-1.jpg';
 
 export const galleryImages = [
-    patioChair1,
-    patioChair2,
-    patioChair3,
-    patioChair4,
-    cedarPlanter1,
-    cedarPlanter2,
-    cedarPlanter3,
-    cedarPlanter4,
-    welcomePlanterStand1,
+  patioChair1,
+  patioChair2,
+  patioChair3,
+  patioChair4,
+  cedarPlanter1,
+  cedarPlanter2,
+  cedarPlanter3,
+  cedarPlanter4,
+  welcomePlanterStand1,
 ];

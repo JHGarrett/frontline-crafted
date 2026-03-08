@@ -7,14 +7,14 @@ import { theme } from './theme/theme';
 const rootElement = document.getElementById('root');
 
 if (!rootElement) {
-    throw new Error('Root element not found');
+  throw new Error('Root element not found');
 }
 
 createRoot(rootElement).render(
-    <StrictMode>
-        <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <App />
-        </ThemeProvider>
-    </StrictMode>
+  <StrictMode>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <App />
+    </ThemeProvider>
+  </StrictMode>,
 );
