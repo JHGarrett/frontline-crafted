@@ -30,7 +30,7 @@ function App() {
 
       <HeroSection
         title="Handcrafted furniture built to last."
-        description="Frontline Crafted creates handcrafted furniture and outdoor pieces with a focus on durable materials, clean design, and honest craftsmanship."
+        description="Frontline Crafted creates handcrafted furniture and outdoor pieces with a focus on durable materials, clean design, and honest craftsmanship. Based in Weatherford, Texas, we build cedar planters, patio furniture, and custom woodworking projects for homeowners across Parker County and the surrounding area."
         image={coverPhoto}
       />
 

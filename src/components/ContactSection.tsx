@@ -17,6 +17,7 @@ import {
   Typography,
 } from '@mui/material';
 
+import CallOutlinedIcon from '@mui/icons-material/CallOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -102,15 +103,71 @@ export const ContactSection = () => {
 
   return (
     <Box component="section" id="contact" sx={{ py: { xs: 10, md: 12 } }}>
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <Stack spacing={4}>
+          <Box
+            sx={(theme) => ({
+              backgroundColor: theme.palette.background.paper,
+              borderRadius: 3,
+              overflow: 'hidden',
+              border: '1px solid',
+              borderColor: 'divider',
+              boxShadow: theme.shadows[2],
+            })}
+          >
+            <Box
+              component="iframe"
+              title="Frontline Crafted service area map"
+              src="https://www.google.com/maps?q=Weatherford,+TX&z=10&output=embed"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              sx={{
+                width: '100%',
+                height: { xs: 280, md: 340 },
+                border: 0,
+                display: 'block',
+              }}
+            />
+
+            <Box sx={{ p: 2.5 }}>
+              <Typography variant="h6" sx={{ mb: 0.5 }}>
+                Proudly serving Weatherford and surrounding areas
+              </Typography>
+
+              <Typography variant="body2" color="text.secondary">
+                Custom woodworking for Weatherford, Aledo, Fort Worth, Hudson Oaks, Willow Park,
+                Springtown, Azle, and nearby communities.
+              </Typography>
+            </Box>
+          </Box>
+
           <Typography variant="h3">Contact Frontline Crafted</Typography>
 
           <Typography variant="body1" color="text.secondary">
-            Have a custom project in mind or interested in one of our pieces? Send us a message.
+            Have a custom project in mind or interested in one of our pieces? Send us a message or
+            give us a call.
           </Typography>
 
+          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
+            <Button
+              component="a"
+              href="tel:+15123546963"
+              variant="contained"
+              size="large"
+              startIcon={<CallOutlinedIcon />}
+              sx={{ alignSelf: 'flex-start' }}
+            >
+              Call (512) 354-6963
+            </Button>
+          </Stack>
+
           <Stack direction="row" spacing={1}>
+            <Tooltip title="Call">
+              <IconButton component="a" href="tel:+15123546963" color="primary">
+                <CallOutlinedIcon />
+              </IconButton>
+            </Tooltip>
+
             <Tooltip title="Email">
               <IconButton component="a" href="mailto:john@frontlinecrafted.com" color="primary">
                 <EmailOutlinedIcon />
@@ -153,42 +210,6 @@ export const ContactSection = () => {
               </IconButton>
             </Tooltip>
           </Stack>
-
-          <Box
-            sx={(theme) => ({
-              backgroundColor: theme.palette.background.paper,
-              borderRadius: 3,
-              overflow: 'hidden',
-              border: '1px solid',
-              borderColor: 'divider',
-              boxShadow: theme.shadows[2],
-            })}
-          >
-            <Box
-              component="iframe"
-              title="Frontline Crafted service area map"
-              src="https://www.google.com/maps?q=Weatherford,+TX&z=10&output=embed"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              sx={{
-                width: '100%',
-                height: { xs: 280, md: 340 },
-                border: 0,
-                display: 'block',
-              }}
-            />
-
-            <Box sx={{ p: 2.5 }}>
-              <Typography variant="h6" sx={{ mb: 0.5 }}>
-                Proudly serving Weatherford and surrounding areas
-              </Typography>
-
-              <Typography variant="body2" color="text.secondary">
-                Custom woodworking for Weatherford, Aledo, Fort Worth, Hudson Oaks, Willow Park,
-                Springtown, Azle, and nearby communities.
-              </Typography>
-            </Box>
-          </Box>
 
           <Fade in timeout={400}>
             <Box

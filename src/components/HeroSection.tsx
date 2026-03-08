@@ -25,7 +25,12 @@ export const HeroSection = ({ title, description, image }: HeroSectionProps) => 
 
             <Typography
               variant="h1"
-              sx={{ mt: 2, fontSize: { xs: '3rem', md: '5rem' }, lineHeight: 1.05 }}
+              sx={{
+                mt: 2,
+                maxWidth: 720,
+                fontSize: { xs: '3rem', md: '5rem' },
+                lineHeight: 1.05,
+              }}
             >
               {title}
             </Typography>
@@ -42,10 +47,21 @@ export const HeroSection = ({ title, description, image }: HeroSectionProps) => 
               {description}
             </Typography>
 
+            <Typography
+              sx={{
+                mt: 2,
+                fontWeight: 600,
+                color: 'text.primary',
+              }}
+            >
+              🇺🇸 Veteran-Owned & Operated | Handcrafted in Texas
+            </Typography>
+
             <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mt: 4 }}>
               <Button href="#pieces" variant="contained" size="large" sx={{ px: 4, py: 1.5 }}>
                 View Available Pieces
               </Button>
+
               <Button
                 href="#contact"
                 variant="outlined"
@@ -61,11 +77,13 @@ export const HeroSection = ({ title, description, image }: HeroSectionProps) => 
             <Box
               component="img"
               src={image}
+              loading="eager"
               alt="Handcrafted outdoor furniture"
               sx={{
                 width: '100%',
                 height: { xs: 380, md: 520 },
                 objectFit: 'cover',
+                objectPosition: '85% center',
                 borderRadius: 6,
                 display: 'block',
                 boxShadow: '0 24px 60px rgba(0,0,0,0.35)',
