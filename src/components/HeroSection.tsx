@@ -38,7 +38,7 @@ export const HeroSection = ({ title, description, image }: HeroSectionProps) => 
                         </Typography>
 
                         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mt: 4 }}>
-                            <Button href="#products" variant="contained" size="large" sx={{ px: 4, py: 1.5 }}>
+                            <Button href="#pieces" variant="contained" size="large" sx={{ px: 4, py: 1.5 }}>
                                 View Available Pieces
                             </Button>
                             <Button
