@@ -48,10 +48,11 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "FurnitureStore",
+      "@type": ["FurnitureStore", "LocalBusiness"],
       "name": "Frontline Crafted",
       "url": "https://frontlinecrafted.com",
       "image": "https://frontlinecrafted.com/social-preview.png",
+      "logo": "https://frontlinecrafted.com/logo.svg",
       "description": "Veteran-owned woodworking business building handcrafted furniture, cedar planters, patio chairs, and custom outdoor pieces in Weatherford, Texas.",
       "telephone": "+1-512-354-6963",
       "email": "john@frontlinecrafted.com",
@@ -65,6 +66,10 @@
         "addressCountry": "US"
       },
       "openingHours": "Mo-Su 10:00-18:00",
+      "founder": {
+        "@type": "Person",
+        "name": "John Garrett"
+      },
       "areaServed": [
         { "@type": "Place", "name": "Weatherford, Texas" },
         { "@type": "Place", "name": "Parker County, Texas" },
@@ -76,13 +81,34 @@
         { "@type": "Place", "name": "Azle, Texas" },
         { "@type": "Place", "name": "Mineral Wells, Texas" }
       ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Woodworking Products",
+        "itemListElement": [
+          {
+            "@type": "OfferCatalog",
+            "name": "Outdoor Furniture"
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "Planters"
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "Home Decor"
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "Custom Woodworking"
+          }
+        ]
+      },
       "sameAs": [
         "https://www.facebook.com/frontlinecrafted",
         "https://www.instagram.com/frontlinecrafted"
       ]
     }
   </script>
-
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FV6T5BYGR3"></script>
   <script>
     window.dataLayer = window.dataLayer || [];

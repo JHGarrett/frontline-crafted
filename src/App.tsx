@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { Box } from '@mui/material';
+import { Route, Routes } from 'react-router-dom';
 import { AboutSection } from './components/AboutSection';
 import { ContactSection } from './components/ContactSection';
 import { FadeInSection } from './components/FadeInSection';
@@ -9,6 +10,7 @@ import { GallerySection } from './components/GallerySection';
 import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
 import { ProductsSection } from './components/ProductsSection';
+import { WeatherfordWoodworkingPage } from './pages/WeatherfordWoodworkingPage';
 import { galleryImages } from './data/galleryImages';
 import { featuredProducts } from './data/products';
 import { values } from './data/values';
@@ -21,13 +23,10 @@ const navItems = [
   { label: 'Gallery', href: '#gallery' },
   { label: 'Contact', href: '#contact' },
 ];
-function App() {
-  const year = useMemo(() => new Date().getFullYear(), []);
 
+const HomePage = () => {
   return (
-    <Box sx={{ bgcolor: 'background.default', color: 'text.primary' }}>
-      <Header navItems={navItems} />
-
+    <>
       <HeroSection
         title="Handcrafted furniture built to last."
         description="Frontline Crafted creates handcrafted furniture and outdoor pieces with a focus on durable materials, clean design, and honest craftsmanship. Based in Weatherford, Texas, we build cedar planters, patio furniture, and custom woodworking projects for homeowners across Parker County and the surrounding area."
@@ -56,6 +55,21 @@ function App() {
       <FadeInSection delay={0.2}>
         <ContactSection />
       </FadeInSection>
+    </>
+  );
+};
+
+function App() {
+  const year = useMemo(() => new Date().getFullYear(), []);
+
+  return (
+    <Box sx={{ bgcolor: 'background.default', color: 'text.primary' }}>
+      <Header navItems={navItems} />
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/weatherford-tx-custom-woodworking" element={<WeatherfordWoodworkingPage />} />
+      </Routes>
 
       <Footer year={year} />
     </Box>
