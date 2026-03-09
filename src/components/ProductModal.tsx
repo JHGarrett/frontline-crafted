@@ -293,7 +293,7 @@ export const ProductModal = ({ open, product, onClose }: ProductModalProps) => {
                     fontWeight: 700,
                   }}
                 >
-                  Inquire About This Piece
+                  Inquire About {product.title}
                 </Button>
 
                 <Typography
