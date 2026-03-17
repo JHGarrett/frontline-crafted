@@ -15,12 +15,14 @@ import { galleryImages } from './data/galleryImages';
 import { featuredProducts } from './data/products';
 import { values } from './data/values';
 import coverPhoto from './assets/logos/frontline-crafted-cover-photo.jpg';
+import { ConfiguratorPage } from './pages/ConfiguratorPage.tsx';
 
 const navItems = [
   { label: 'About / Values', href: '#about' },
   { label: 'The Maker', href: '#maker' },
   { label: 'Pieces', href: '#pieces' },
   { label: 'Gallery', href: '#gallery' },
+  { label: 'Configurator', href: '/configurator' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -68,6 +70,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/configurator" element={<ConfiguratorPage />} />
         <Route path="/weatherford-tx-custom-woodworking" element={<WeatherfordWoodworkingPage />} />
       </Routes>
 
