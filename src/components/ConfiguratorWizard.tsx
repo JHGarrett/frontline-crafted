@@ -3,24 +3,48 @@ import {
   Alert,
   Box,
   Button,
+  MenuItem,
   Stack,
   Step,
   StepLabel,
   Stepper,
   TextField,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
 import { CONFIGURABLE_PRODUCTS, type ConfiguratorFormValues } from '../types/configuratorProducts';
 import { calculateCedarPlanterEstimate } from '../lib/configurator/calculateCedarPlanterEstimate';
+import { calculateThreeTierPlanterEstimate } from '../lib/configurator/calculateThreeTierPlanterEstimate';
 import emailjs from '@emailjs/browser';
 
-const STEP_LABELS = ['Product', 'Length', 'Depth', 'Height', 'Estimate', 'Contact'];
+const THREE_TIER_WIDTH_OPTIONS = [
+  { value: '12', label: '12 inch' },
+  { value: '24', label: '24 inch' },
+  { value: '36', label: '36 inch' },
+];
+
+const THREE_TIER_HEIGHT_OPTIONS = [
+  { value: '28', label: '28 inch' },
+  { value: '34', label: '34 inch' },
+  { value: '40', label: '40 inch' },
+];
+
+const getStepLabels = (productType: ConfiguratorFormValues['productType']) => {
+  if (productType === 'cedar-3-tier-planter') {
+    return ['Product', 'Planter Width', 'Planter Height', 'Estimate', 'Contact'];
+  }
+
+  return ['Product', 'Length', 'Depth', 'Height', 'Estimate', 'Contact'];
+};
 
 const INITIAL_VALUES: ConfiguratorFormValues = {
   productType: null,
   width: '',
   depth: '',
   planterHeight: '15',
+  threeTierWidth: '',
+  threeTierHeight: '',
   name: '',
   email: '',
   phone: '',
@@ -68,6 +92,16 @@ const getPlanterHeightError = (value: string) => {
   return '';
 };
 
+const getThreeTierWidthError = (value: string) => {
+  if (!value.trim()) return 'Select a planter width.';
+  return '';
+};
+
+const getThreeTierHeightError = (value: string) => {
+  if (!value.trim()) return 'Select a planter height.';
+  return '';
+};
+
 const getNameError = (value: string) => {
   if (!value.trim()) return 'Enter your name.';
   return '';
@@ -85,6 +119,9 @@ const getEmailError = (value: string) => {
 };
 
 export const ConfiguratorWizard = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   const [step, setStep] = useState(0);
   const [values, setValues] = useState<ConfiguratorFormValues>(INITIAL_VALUES);
   const [showStepErrors, setShowStepErrors] = useState(false);
@@ -92,8 +129,81 @@ export const ConfiguratorWizard = () => {
   const [submitSuccess, setSubmitSuccess] = useState('');
   const [submitError, setSubmitError] = useState('');
 
+  const isThreeTierPlanter = values.productType === 'cedar-3-tier-planter';
+  const stepLabels = getStepLabels(values.productType);
+  const estimateStep = isThreeTierPlanter ? 3 : 4;
+  const contactStep = isThreeTierPlanter ? 4 : 5;
+
+  const nameError = useMemo(() => getNameError(values.name), [values.name]);
+  const emailError = useMemo(() => getEmailError(values.email), [values.email]);
+
+  const selectedProduct = useMemo(
+    () => CONFIGURABLE_PRODUCTS.find((product) => product.id === values.productType) ?? null,
+    [values.productType],
+  );
+
+  const lengthError = useMemo(() => getLengthError(values.width), [values.width]);
+  const depthError = useMemo(() => getDepthError(values.depth), [values.depth]);
+  const planterHeightError = useMemo(
+    () => getPlanterHeightError(values.planterHeight),
+    [values.planterHeight],
+  );
+  const threeTierWidthError = useMemo(
+    () => getThreeTierWidthError(values.threeTierWidth),
+    [values.threeTierWidth],
+  );
+  const threeTierHeightError = useMemo(
+    () => getThreeTierHeightError(values.threeTierHeight),
+    [values.threeTierHeight],
+  );
+
+  const cedarEstimate = useMemo(() => {
+    const width = Number(values.width);
+    const depth = Number(values.depth);
+    const planterHeight = Number(values.planterHeight);
+
+    if (!width || !depth || !planterHeight) return null;
+    if (lengthError || depthError || planterHeightError) return null;
+
+    try {
+      return calculateCedarPlanterEstimate({
+        width,
+        depth,
+        planterHeight,
+      });
+    } catch {
+      return null;
+    }
+  }, [
+    values.width,
+    values.depth,
+    values.planterHeight,
+    lengthError,
+    depthError,
+    planterHeightError,
+  ]);
+
+  const threeTierEstimate = useMemo(() => {
+    const planterWidth = Number(values.threeTierWidth);
+    const planterHeight = Number(values.threeTierHeight);
+
+    if (!planterWidth || !planterHeight) return null;
+    if (threeTierWidthError || threeTierHeightError) return null;
+
+    try {
+      return calculateThreeTierPlanterEstimate({
+        planterWidth: planterWidth as 12 | 24 | 36,
+        planterHeight: planterHeight as 28 | 34 | 40,
+      });
+    } catch {
+      return null;
+    }
+  }, [values.threeTierWidth, values.threeTierHeight, threeTierWidthError, threeTierHeightError]);
+
+  const activeEstimate = isThreeTierPlanter ? threeTierEstimate : cedarEstimate;
+
   const handleRequestBuild = async () => {
-    if (!estimate || !selectedProduct) return;
+    if (!activeEstimate || !selectedProduct) return;
 
     setIsSubmitting(true);
     setSubmitSuccess('');
@@ -113,12 +223,14 @@ export const ConfiguratorWizard = () => {
           project_type: selectedProduct.label,
           message: values.notes || 'No additional notes provided.',
           product_name: selectedProduct.label,
-          planter_length: values.width,
-          planter_depth: values.depth,
-          planter_height: values.planterHeight,
-          estimated_price: estimate.finalEstimate,
+          planter_length: isThreeTierPlanter ? values.threeTierWidth : values.width,
+          planter_depth: isThreeTierPlanter ? 'N/A' : values.depth,
+          planter_height: isThreeTierPlanter ? values.threeTierHeight : values.planterHeight,
+          estimated_price: activeEstimate.finalEstimate,
           legs_included: 'Yes',
-          leg_height_note: 'Final leg height will be discussed after the build is requested.',
+          leg_height_note: isThreeTierPlanter
+            ? 'Selected planter stand height is included in this estimate.'
+            : 'Final leg height will be discussed after the build is requested.',
         },
         {
           publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
@@ -133,46 +245,21 @@ export const ConfiguratorWizard = () => {
     }
   };
 
-  const nameError = useMemo(() => getNameError(values.name), [values.name]);
-  const emailError = useMemo(() => getEmailError(values.email), [values.email]);
-
-  const selectedProduct = useMemo(
-    () => CONFIGURABLE_PRODUCTS.find((product) => product.id === values.productType) ?? null,
-    [values.productType],
-  );
-
-  const lengthError = useMemo(() => getLengthError(values.width), [values.width]);
-  const depthError = useMemo(() => getDepthError(values.depth), [values.depth]);
-  const planterHeightError = useMemo(
-    () => getPlanterHeightError(values.planterHeight),
-    [values.planterHeight],
-  );
-
-  const estimate = useMemo(() => {
-    const width = Number(values.width);
-    const depth = Number(values.depth);
-    const planterHeight = Number(values.planterHeight);
-
-    if (!width || !depth || !planterHeight) return null;
-    if (lengthError || depthError || planterHeightError) return null;
-
-    try {
-      return calculateCedarPlanterEstimate({
-        width,
-        depth,
-        planterHeight,
-      });
-    } catch {
-      return null;
-    }
-  }, [values, lengthError, depthError, planterHeightError]);
-
   const canContinue = (() => {
     if (step === 0) return values.productType !== null;
+
+    if (isThreeTierPlanter) {
+      if (step === 1) return !threeTierWidthError;
+      if (step === 2) return !threeTierHeightError;
+      if (step === 3) return Boolean(activeEstimate);
+      if (step === 4) return !nameError && !emailError;
+      return true;
+    }
+
     if (step === 1) return !lengthError;
     if (step === 2) return !depthError;
     if (step === 3) return !planterHeightError;
-    if (step === 4) return true;
+    if (step === 4) return Boolean(activeEstimate);
     if (step === 5) return !nameError && !emailError;
     return true;
   })();
@@ -209,21 +296,38 @@ export const ConfiguratorWizard = () => {
     nextStep();
   };
 
-  const showLengthError = step === 1 && showStepErrors && Boolean(lengthError);
-  const showDepthError = step === 2 && showStepErrors && Boolean(depthError);
-  const showPlanterHeightError = step === 3 && showStepErrors && Boolean(planterHeightError);
-  const showNameError = step === 5 && showStepErrors && Boolean(nameError);
-  const showEmailError = step === 5 && showStepErrors && Boolean(emailError);
+  const showLengthError =
+    !isThreeTierPlanter && step === 1 && showStepErrors && Boolean(lengthError);
+  const showDepthError = !isThreeTierPlanter && step === 2 && showStepErrors && Boolean(depthError);
+  const showPlanterHeightError =
+    !isThreeTierPlanter && step === 3 && showStepErrors && Boolean(planterHeightError);
+  const showThreeTierWidthError =
+    isThreeTierPlanter && step === 1 && showStepErrors && Boolean(threeTierWidthError);
+  const showThreeTierHeightError =
+    isThreeTierPlanter && step === 2 && showStepErrors && Boolean(threeTierHeightError);
+  const showNameError = step === contactStep && showStepErrors && Boolean(nameError);
+  const showEmailError = step === contactStep && showStepErrors && Boolean(emailError);
 
   return (
     <Box>
-      <Stepper activeStep={step} sx={{ mb: 4 }}>
-        {STEP_LABELS.map((label) => (
-          <Step key={label}>
-            <StepLabel>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
+      {isMobile ? (
+        <Stack spacing={0.5} sx={{ mb: 4 }}>
+          <Typography variant="overline" color="text.secondary">
+            Step {step + 1} of {stepLabels.length}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {stepLabels[step]}
+          </Typography>
+        </Stack>
+      ) : (
+        <Stepper activeStep={step} sx={{ mb: 4 }}>
+          {stepLabels.map((label) => (
+            <Step key={label}>
+              <StepLabel>{label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+      )}
 
       {step === 0 && (
         <Stack spacing={3} onKeyDown={handleStepKeyDown}>
@@ -263,7 +367,7 @@ export const ConfiguratorWizard = () => {
         </Stack>
       )}
 
-      {step === 1 && (
+      {!isThreeTierPlanter && step === 1 && (
         <Stack spacing={3} onKeyDown={handleStepKeyDown}>
           <Box>
             <Typography variant="h5">How long should the planter be?</Typography>
@@ -297,7 +401,7 @@ export const ConfiguratorWizard = () => {
         </Stack>
       )}
 
-      {step === 2 && (
+      {!isThreeTierPlanter && step === 2 && (
         <Stack spacing={3} onKeyDown={handleStepKeyDown}>
           <Box>
             <Typography variant="h5">How deep should the planter be?</Typography>
@@ -331,7 +435,7 @@ export const ConfiguratorWizard = () => {
         </Stack>
       )}
 
-      {step === 3 && (
+      {!isThreeTierPlanter && step === 3 && (
         <Stack spacing={3} onKeyDown={handleStepKeyDown}>
           <Box>
             <Typography variant="h5">How tall should the planter box be?</Typography>
@@ -371,46 +475,142 @@ export const ConfiguratorWizard = () => {
         </Stack>
       )}
 
-      {step === 4 && (
+      {isThreeTierPlanter && step === 1 && (
+        <Stack spacing={3} onKeyDown={handleStepKeyDown}>
+          <Box>
+            <Typography variant="h5">What planter width would you like?</Typography>
+
+            <Typography variant="body2" sx={{ mt: 1, color: 'text.secondary' }}>
+              Select the width for all three planter boxes.
+            </Typography>
+          </Box>
+
+          <TextField
+            select
+            autoFocus
+            label="Planter Width"
+            value={values.threeTierWidth}
+            onChange={(event) => updateValue('threeTierWidth', event.target.value)}
+            helperText={
+              showThreeTierWidthError ? threeTierWidthError : 'Choose 12, 24, or 36 inches'
+            }
+            error={showThreeTierWidthError}
+            fullWidth
+          >
+            {THREE_TIER_WIDTH_OPTIONS.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+
+          <Stack direction="row" spacing={2}>
+            <Button variant="outlined" onClick={prevStep}>
+              Back
+            </Button>
+
+            <Button variant="contained" onClick={nextStep}>
+              Continue
+            </Button>
+          </Stack>
+        </Stack>
+      )}
+
+      {isThreeTierPlanter && step === 2 && (
+        <Stack spacing={3} onKeyDown={handleStepKeyDown}>
+          <Box>
+            <Typography variant="h5">What planter height would you like?</Typography>
+
+            <Typography variant="body2" sx={{ mt: 1, color: 'text.secondary' }}>
+              Select the overall stand height for the planter.
+            </Typography>
+
+            <Typography variant="body2" sx={{ mt: 1, color: 'text.secondary' }}>
+              Example: 34 inches is a comfortable standard height for patio or porch use.
+            </Typography>
+          </Box>
+
+          <TextField
+            select
+            autoFocus
+            label="Planter Height"
+            value={values.threeTierHeight}
+            onChange={(event) => updateValue('threeTierHeight', event.target.value)}
+            helperText={
+              showThreeTierHeightError ? threeTierHeightError : 'Choose 28, 34, or 40 inches'
+            }
+            error={showThreeTierHeightError}
+            fullWidth
+          >
+            {THREE_TIER_HEIGHT_OPTIONS.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+
+          <Stack direction="row" spacing={2}>
+            <Button variant="outlined" onClick={prevStep}>
+              Back
+            </Button>
+
+            <Button variant="contained" onClick={nextStep}>
+              Continue
+            </Button>
+          </Stack>
+        </Stack>
+      )}
+
+      {step === estimateStep && (
         <Stack spacing={3}>
           <Typography variant="h5">Estimated Build Price</Typography>
 
-          {estimate ? (
+          {activeEstimate ? (
             <>
               <Typography variant="body2" color="text.secondary">
-                This is a rough estimate based on the dimensions provided. Final pricing may vary
+                This is a rough estimate based on the selections provided. Final pricing may vary
                 slightly depending on the final build details.
               </Typography>
 
-              <Typography variant="body2" color="text.secondary">
-                Legs are included in this price. Final leg height will be discussed after you
-                request the build.
-              </Typography>
+              {!isThreeTierPlanter && (
+                <Typography variant="body2" color="text.secondary">
+                  Legs are included in this price.
+                </Typography>
+              )}
 
-              <Stack spacing={1}>
-                <Typography>Product: {selectedProduct?.label}</Typography>
-                <Typography>Length: {values.width} in</Typography>
-                <Typography>Depth: {values.depth} in</Typography>
-                <Typography>Planter Height: {values.planterHeight} in</Typography>
-              </Stack>
+              {!isThreeTierPlanter ? (
+                <Stack spacing={1}>
+                  <Typography>Product: {selectedProduct?.label}</Typography>
+                  <Typography>Length: {values.width} in</Typography>
+                  <Typography>Depth: {values.depth} in</Typography>
+                  <Typography>Planter Height: {values.planterHeight} in</Typography>
+                </Stack>
+              ) : (
+                <Stack spacing={1}>
+                  <Typography>Product: {selectedProduct?.label}</Typography>
+                  <Typography>Planter Width: {values.threeTierWidth} in</Typography>
+                  <Typography>Planter Height: {values.threeTierHeight} in</Typography>
+                </Stack>
+              )}
 
               <Typography variant="h3" sx={{ mt: 2 }}>
-                ${estimate.finalEstimate}
+                ${activeEstimate.finalEstimate}
               </Typography>
 
               <Stack direction="row" spacing={2}>
                 <Button variant="outlined" onClick={prevStep}>
                   Back
                 </Button>
+
                 <Button variant="contained" onClick={nextStep}>
                   Continue
-                </Button>{' '}
+                </Button>
               </Stack>
             </>
           ) : (
             <>
               <Typography variant="body2" color="text.secondary">
-                Those dimensions are outside the range currently supported by this estimator. Please
+                Those selections are outside the range currently supported by this estimator. Please
                 go back and adjust the size.
               </Typography>
 
@@ -423,7 +623,8 @@ export const ConfiguratorWizard = () => {
           )}
         </Stack>
       )}
-      {step === 5 && (
+
+      {step === contactStep && (
         <Stack spacing={3} onKeyDown={handleStepKeyDown}>
           <Box>
             <Typography variant="h5">Request This Build</Typography>
@@ -477,7 +678,11 @@ export const ConfiguratorWizard = () => {
               Back
             </Button>
 
-            <Button variant="contained" onClick={handleRequestBuild} disabled={isSubmitting}>
+            <Button
+              variant="contained"
+              onClick={handleRequestBuild}
+              disabled={isSubmitting || !activeEstimate}
+            >
               {isSubmitting ? 'Sending...' : 'Send Request'}
             </Button>
           </Stack>

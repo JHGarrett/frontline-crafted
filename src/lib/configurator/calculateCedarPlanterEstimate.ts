@@ -23,10 +23,17 @@ type CedarPlanterEstimate = {
   finalEstimate: number;
 };
 
-const BOARD_FACE_WIDTH = 5;
+const USABLE_BOARD_FACE_WIDTH = 5;
 const WASTE_FACTOR = 1.15;
 const HARDWARE_OVERHEAD = 8;
 const PRICE_MULTIPLIER = 2.5;
+const LEG_BOARD_COUNT = 2;
+
+const assertPositiveNumber = (value: number, label: string) => {
+  if (!Number.isFinite(value) || value <= 0) {
+    throw new Error(`${label} must be greater than 0.`);
+  }
+};
 
 const getBoardStock = (width: number, depth: number): CedarBoardStock => {
   const longestCut = Math.max(width, depth);
@@ -50,13 +57,13 @@ const getBoardStock = (width: number, depth: number): CedarBoardStock => {
   throw new Error('Requested planter size is too large for the current cedar picket options.');
 };
 
-const calculateHorizontalSideBoards = (
+const estimateHorizontalSideBoards = (
   width: number,
   depth: number,
   planterHeight: number,
   boardLength: number,
 ) => {
-  const rowsPerFace = Math.ceil(planterHeight / BOARD_FACE_WIDTH);
+  const rowsPerFace = Math.ceil(planterHeight / USABLE_BOARD_FACE_WIDTH);
 
   let widthCutsRemaining = rowsPerFace * 2;
   let depthCutsRemaining = rowsPerFace * 2;
@@ -83,28 +90,38 @@ const calculateHorizontalSideBoards = (
     boardCount += 1;
   }
 
-  return {
-    boardCount,
-  };
+  return boardCount;
 };
 
-const calculateBottomBoards = (width: number, depth: number, boardLength: number) => {
-  const bottomPieces = Math.ceil(width / BOARD_FACE_WIDTH);
-  const piecesPerBoard = Math.floor(boardLength / depth);
+const estimateBottomBoards = (width: number, depth: number, boardLength: number) => {
+  const options = [
+    {
+      piecesNeeded: Math.ceil(width / USABLE_BOARD_FACE_WIDTH),
+      pieceLength: depth,
+    },
+    {
+      piecesNeeded: Math.ceil(depth / USABLE_BOARD_FACE_WIDTH),
+      pieceLength: width,
+    },
+  ];
 
-  if (piecesPerBoard < 1) {
-    throw new Error('Requested planter depth is too large for the current cedar picket options.');
+  const boardCounts = options.map(({ piecesNeeded, pieceLength }) => {
+    const piecesPerBoard = Math.floor(boardLength / pieceLength);
+
+    if (piecesPerBoard < 1) {
+      return Number.POSITIVE_INFINITY;
+    }
+
+    return Math.ceil(piecesNeeded / piecesPerBoard);
+  });
+
+  const bestCount = Math.min(...boardCounts);
+
+  if (!Number.isFinite(bestCount)) {
+    throw new Error('Requested planter size is too large for the current cedar picket options.');
   }
 
-  return Math.ceil(bottomPieces / piecesPerBoard);
-};
-
-const calculateLegBoards = (longestSide: number) => {
-  if (longestSide <= 36) {
-    return 2;
-  }
-
-  return 2;
+  return bestCount;
 };
 
 const calculateSupportBoards = (longestSide: number) => {
@@ -120,27 +137,29 @@ export const calculateCedarPlanterEstimate = ({
   depth,
   planterHeight,
 }: CedarPlanterDimensions): CedarPlanterEstimate => {
+  assertPositiveNumber(width, 'Width');
+  assertPositiveNumber(depth, 'Depth');
+  assertPositiveNumber(planterHeight, 'Planter height');
+
   const boardStock = getBoardStock(width, depth);
   const longestSide = Math.max(width, depth);
 
-  const sideBoardCount = calculateHorizontalSideBoards(
+  const sideBoardCount = estimateHorizontalSideBoards(
     width,
     depth,
     planterHeight,
     boardStock.boardLength,
-  ).boardCount;
+  );
 
-  const bottomBoardCount = calculateBottomBoards(width, depth, boardStock.boardLength);
-  const legBoardCount = calculateLegBoards(longestSide);
+  const bottomBoardCount = estimateBottomBoards(width, depth, boardStock.boardLength);
+  const legBoardCount = LEG_BOARD_COUNT;
   const supportBoardCount = calculateSupportBoards(longestSide);
 
   const boardCount = sideBoardCount + bottomBoardCount + legBoardCount + supportBoardCount;
-
   const materialCost = boardCount * boardStock.boardCost;
-  const wasteAdjustedMaterialCost = materialCost * WASTE_FACTOR;
-  const finalEstimate = Math.ceil(
-    (wasteAdjustedMaterialCost + HARDWARE_OVERHEAD) * PRICE_MULTIPLIER,
-  );
+  const wasteAdjustedMaterialCost = Number((materialCost * WASTE_FACTOR).toFixed(2));
+  const overheadCost = HARDWARE_OVERHEAD;
+  const finalEstimate = Math.ceil((wasteAdjustedMaterialCost + overheadCost) * PRICE_MULTIPLIER);
 
   return {
     boardStock,
@@ -151,7 +170,34 @@ export const calculateCedarPlanterEstimate = ({
     boardCount,
     materialCost,
     wasteAdjustedMaterialCost,
-    overheadCost: HARDWARE_OVERHEAD,
+    overheadCost,
     finalEstimate,
   };
 };
+
+export type ConfigurableProductId = 'cedar-planter';
+
+export type ConfigurableProduct = {
+  id: ConfigurableProductId;
+  label: string;
+  description: string;
+};
+
+export const CONFIGURABLE_PRODUCTS: ConfigurableProduct[] = [
+  {
+    id: 'cedar-planter',
+    label: 'Cedar Planter',
+    description: 'Custom cedar planter boxes built to your dimensions.',
+  },
+];
+
+export interface ConfiguratorFormValues {
+  productType: ConfigurableProductId | null;
+  width: string;
+  depth: string;
+  planterHeight: string;
+  name: string;
+  email: string;
+  phone: string;
+  notes: string;
+}
