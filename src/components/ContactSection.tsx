@@ -19,6 +19,7 @@ import {
 
 import CallOutlinedIcon from '@mui/icons-material/CallOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import SmsOutlinedIcon from '@mui/icons-material/SmsOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -181,7 +182,7 @@ export const ContactSection = () => {
 
             <Tooltip title="Text">
               <IconButton component="a" href="sms:+18173309747" color="primary">
-                <Typography variant="button">SMS</Typography>
+                <SmsOutlinedIcon />
               </IconButton>
             </Tooltip>
 
