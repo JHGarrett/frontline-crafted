@@ -145,27 +145,43 @@ export const ContactSection = () => {
           <Typography variant="h3">Contact Frontline Crafted</Typography>
 
           <Typography variant="body1" color="text.secondary">
-            Have a custom project in mind or interested in one of our pieces? Send us a message or
-            give us a call.
+            Have a custom project in mind or interested in one of our pieces? Send us a message,
+            call, or text.
           </Typography>
 
           <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
             <Button
               component="a"
-              href="tel:+15123546963"
+              href="sms:+18173309747"
               variant="contained"
+              size="large"
+              sx={{ alignSelf: 'flex-start' }}
+            >
+              Text (817) 330-9747
+            </Button>
+
+            <Button
+              component="a"
+              href="tel:+18173309747"
+              variant="outlined"
               size="large"
               startIcon={<CallOutlinedIcon />}
               sx={{ alignSelf: 'flex-start' }}
             >
-              Call (512) 354-6963
+              Call (817) 330-9747
             </Button>
           </Stack>
 
           <Stack direction="row" spacing={1}>
             <Tooltip title="Call">
-              <IconButton component="a" href="tel:+15123546963" color="primary">
+              <IconButton component="a" href="tel:+18173309747" color="primary">
                 <CallOutlinedIcon />
+              </IconButton>
+            </Tooltip>
+
+            <Tooltip title="Text">
+              <IconButton component="a" href="sms:+18173309747" color="primary">
+                <Typography variant="button">SMS</Typography>
               </IconButton>
             </Tooltip>
 
