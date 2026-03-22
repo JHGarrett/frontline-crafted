@@ -1,4 +1,5 @@
 import { Box, Button, Container, Grid, Stack, Typography } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 
 type HeroSectionProps = {
   title: string;
@@ -42,6 +43,7 @@ export const HeroSection = ({ title, description, image }: HeroSectionProps) => 
                 color: 'text.secondary',
                 fontSize: { xs: '1rem', md: '1.125rem' },
                 lineHeight: 1.8,
+                whiteSpace: 'pre-line',
               }}
             >
               {description}
@@ -63,14 +65,51 @@ export const HeroSection = ({ title, description, image }: HeroSectionProps) => 
               </Button>
 
               <Button
+                component={RouterLink}
+                to="/configurator"
+                variant="outlined"
+                size="large"
+                sx={{ px: 4, py: 1.5 }}
+              >
+                Get a Price Estimate
+              </Button>
+
+              <Button
                 href="#contact"
                 variant="outlined"
                 size="large"
-                sx={{ px: 4, py: 1.5, borderColor: 'rgba(255,255,255,0.2)', color: 'text.primary' }}
+                sx={{
+                  px: 4,
+                  py: 1.5,
+                  borderColor: 'rgba(255,255,255,0.2)',
+                  color: 'text.primary',
+                }}
               >
                 Request a Custom Build
               </Button>
             </Stack>
+
+            <Typography
+              sx={{
+                mt: 2,
+                color: 'text.secondary',
+                fontSize: '0.95rem',
+              }}
+            >
+              Prefer to talk through your project?{' '}
+              <Box
+                component="a"
+                href="sms:8173309747"
+                sx={{
+                  color: 'text.primary',
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                  '&:hover': { textDecoration: 'underline' },
+                }}
+              >
+                Text (817) 330-9747
+              </Box>
+            </Typography>
           </Grid>
 
           <Grid size={{ xs: 12, md: 5 }}>

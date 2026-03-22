@@ -16,6 +16,7 @@ import { featuredProducts } from './data/products';
 import { values } from './data/values';
 import coverPhoto from './assets/logos/frontline-crafted-cover-photo.jpg';
 import { ConfiguratorPage } from './pages/ConfiguratorPage.tsx';
+import { ConfiguratorPromoSection } from './components/ConfiguratorPromoSection.tsx';
 
 const navItems = [
   { label: 'About / Values', href: '#about' },
@@ -31,7 +32,8 @@ const HomePage = () => {
     <>
       <HeroSection
         title="Handcrafted furniture built to last."
-        description="Frontline Crafted creates handcrafted furniture and outdoor pieces with a focus on durable materials, clean design, and honest craftsmanship. Based in Weatherford, Texas, we build cedar planters, patio furniture, and custom woodworking projects for homeowners across Parker County and the surrounding area."
+        description={`Frontline Crafted creates handcrafted furniture and outdoor pieces with a focus on durable materials, clean design, and honest craftsmanship.
+Explore available pieces or use our configurator to get a rough idea of pricing for your custom build.`}
         image={coverPhoto}
       />
 
@@ -48,6 +50,10 @@ const HomePage = () => {
 
       <FadeInSection delay={0.1}>
         <ProductsSection products={featuredProducts} />
+      </FadeInSection>
+
+      <FadeInSection delay={0.125}>
+        <ConfiguratorPromoSection />
       </FadeInSection>
 
       <FadeInSection delay={0.15}>
