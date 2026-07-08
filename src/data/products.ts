@@ -1,80 +1,165 @@
 import type { Product } from '../types';
 
-import cedarPlanter1 from '../assets/products/cedar-planters/cedar-planter-1.jpg';
-import cedarPlanter2 from '../assets/products/cedar-planters/cedar-planter-2.jpg';
-import cedarPlanter3 from '../assets/products/cedar-planters/cedar-planter-3.jpg';
-import cedarPlanter4 from '../assets/products/cedar-planters/cedar-planter-4.jpg';
-import cedarPlanter5 from '../assets/products/cedar-planters/cedar-planter-5.jpg';
-import cedarPlanter6 from '../assets/products/cedar-planters/cedar-planter-6.jpg';
+import modernNightstand1 from '../assets/products/Modern Nightstand with Drawer & Shelves/Modern Nightstand with Drawer & Shelves-1.jpg';
+import modernNightstand2 from '../assets/products/Modern Nightstand with Drawer & Shelves/Modern Nightstand with Drawer & Shelves-2.jpg';
+import modernNightstand3 from '../assets/products/Modern Nightstand with Drawer & Shelves/Modern Nightstand with Drawer & Shelves-3.jpg';
 
-import patioChair1 from '../assets/products/patio-chairs/patio-chair-1.jpg';
-import patioChair2 from '../assets/products/patio-chairs/patio-chair-2.jpg';
-import patioChair3 from '../assets/products/patio-chairs/patio-chair-3.jpg';
-import patioChair4 from '../assets/products/patio-chairs/patio-chair-4.jpg';
+import coffeeTableHiddenStorage1 from '../assets/products/coffee-table-hidden-storage/coffee-table-hidden-storage-1.jpg';
+import coffeeTableHiddenStorage2 from '../assets/products/coffee-table-hidden-storage/coffee-table-hidden-storage-2.jpg';
 
-import welcomeStand1 from '../assets/products/welcome-planter-stand/welcome-planter-stand-1.jpg';
+import modernWaterfallNightstand1 from '../assets/products/Handcrafted Modern Nightstand with Drawer/Handcrafted Modern Nightstand with Drawer-1.jpg';
+import modernWaterfallNightstand2 from '../assets/products/Handcrafted Modern Nightstand with Drawer/Handcrafted Modern Nightstand with Drawer-2.jpg';
+import modernWaterfallNightstand3 from '../assets/products/Handcrafted Modern Nightstand with Drawer/Handcrafted Modern Nightstand with Drawer-3.jpg';
+import modernWaterfallNightstand4 from '../assets/products/Handcrafted Modern Nightstand with Drawer/Handcrafted Modern Nightstand with Drawer-4.jpg';
 
-import threeTierPlanter1 from '../assets/products/three-tier-planter/three-tier-planter-1.jpg';
-import threeTierPlanter2 from '../assets/products/three-tier-planter/three-tier-planter-2.jpg';
-import threeTierPlanter3 from '../assets/products/three-tier-planter/three-tier-planter-3.jpg';
-import threeTierPlanter4 from '../assets/products/three-tier-planter/three-tier-planter-4.jpg';
+import classicBookcaseCabinet1 from '../assets/products/classic-tall-bookcase-cabinet/classic-tall-bookcase-cabinet-1.jpg';
+import classicBookcaseCabinet2 from '../assets/products/classic-tall-bookcase-cabinet/classic-tall-bookcase-cabinet-2.jpg';
+import classicBookcaseCabinet3 from '../assets/products/classic-tall-bookcase-cabinet/classic-tall-bookcase-cabinet-3.jpg';
+import classicBookcaseCabinet4 from '../assets/products/classic-tall-bookcase-cabinet/classic-tall-bookcase-cabinet-4.jpg';
+import classicBookcaseCabinet5 from '../assets/products/classic-tall-bookcase-cabinet/classic-tall-bookcase-cabinet-5.jpg';
+import classicBookcaseCabinet6 from '../assets/products/classic-tall-bookcase-cabinet/classic-tall-bookcase-cabinet-6.jpg';
+
+import entrywayKeyHolder1 from '../assets/products/Handmade Entryway Key Holder & Shelf/Handmade Entryway Key Holder & Shelf-1.jpg';
+import entrywayKeyHolder2 from '../assets/products/Handmade Entryway Key Holder & Shelf/Handmade Entryway Key Holder & Shelf-2.jpg';
+import entrywayKeyHolder3 from '../assets/products/Handmade Entryway Key Holder & Shelf/Handmade Entryway Key Holder & Shelf-3.jpg';
+
+import midCenturySofaTable1 from '../assets/products/Mid-Century Modern Sofa Table/Mid-Century Modern Sofa Table-1.jpg';
+import midCenturySofaTable2 from '../assets/products/Mid-Century Modern Sofa Table/Mid-Century Modern Sofa Table-2.jpg';
+import midCenturySofaTable3 from '../assets/products/Mid-Century Modern Sofa Table/Mid-Century Modern Sofa Table-3.jpg';
 
 export const featuredProducts: Product[] = [
   {
-    title: 'Cedar Planters',
-    description: 'Durable cedar planters built for porches, patios, and garden spaces.',
-    images: [
-      cedarPlanter1,
-      cedarPlanter2,
-      cedarPlanter3,
-      cedarPlanter4,
-      cedarPlanter5,
-      cedarPlanter6,
-    ],
-    details: [
-      'Handcrafted from cedar',
-      'Great for patios, porches, and gardens',
-      'Built for outdoor use',
-    ],
-    eyebrow: 'Handcrafted from cedar',
-    badge: 'Custom sizes available',
-    priceLabel: 'Starting at $60',
-  },
-  {
-    title: '3 Tier Planter',
+    title: 'Modern Nightstand with Drawer & Shelves',
     description:
-      'A handcrafted vertical planter designed to give you more planting space in a compact footprint. Great for flowers, herbs, and porch or patio displays.',
-    images: [threeTierPlanter1, threeTierPlanter2, threeTierPlanter3, threeTierPlanter4],
+      'A handcrafted wide nightstand with a spacious tabletop, smooth-gliding drawer, and two open shelves. Built from solid wood with a clean, timeless design that blends modern and rustic styles.',
+    images: [modernNightstand1, modernNightstand2, modernNightstand3],
     details: [
-      'Three-tier vertical design',
-      'Great for porches, patios, and small garden spaces',
-      'Handcrafted for outdoor use',
-      'Made to order',
+      'Handcrafted from solid wood',
+      'Spacious storage drawer',
+      'Two open storage shelves',
+      'Large tabletop for lamps, books, chargers, and decor',
+      'Smooth sanded finish',
+      'Custom stain and paint options available',
+      'Custom sizes and drawer hardware available',
+      'Built to order',
     ],
-    eyebrow: 'Vertical garden design',
-    badge: 'Made to order',
-    priceLabel: 'Starting at $80',
+    eyebrow: 'Bedroom furniture',
+    badge: 'Built to order',
+    priceLabel: 'Starting at $225',
   },
   {
-    title: 'Patio Chairs',
-    description: 'Handcrafted outdoor seating built for comfort and durability.',
-    images: [patioChair1, patioChair2, patioChair3, patioChair4],
-    details: ['Built from solid wood', 'Made for outdoor use', 'Custom finish options available'],
-    eyebrow: 'Built from solid wood',
-    badge: 'Custom finish options',
-    priceLabel: 'Custom quote available',
+    title: 'Coffee Table with Hidden Storage',
+    description:
+      'A handcrafted coffee table with a hidden storage compartment beneath the tabletop and a spacious lower shelf for baskets, books, blankets, or decor. Built with clean lines, solid wood construction, and a timeless style for everyday living room use.',
+    images: [coffeeTableHiddenStorage1, coffeeTableHiddenStorage2],
+    details: [
+      'Hidden storage compartment beneath the tabletop',
+      'Spacious lower shelf for storage and decor',
+      'Handcrafted solid wood construction',
+      'Furniture-grade finish',
+      'Clean, timeless design',
+      'Great for living rooms, family rooms, apartments, and townhomes',
+      'Dimensions: 47" long x 29" wide x 18 3/4" tall',
+      'Custom sizes, stain colors, and wood species may be available',
+      'Built to order',
+    ],
+    eyebrow: 'Living room furniture',
+    badge: 'Hidden storage',
+    priceLabel: 'Starting at $350',
   },
   {
-    title: 'Welcome Planter Stand',
-    description: 'Decorative outdoor planter stand that adds a welcoming touch to your entryway.',
-    images: [welcomeStand1],
-    details: [
-      'Decorative vertical design',
-      'Great for porches and entryways',
-      'Custom builds available',
+    title: 'Handcrafted Modern Nightstand with Drawer',
+    description:
+      'A handcrafted waterfall nightstand with clean lines, seamless mitered corners, a smooth-gliding drawer, and an open lower shelf. Built from solid wood with a refined furniture-quality look that blends modern design with everyday function.',
+    images: [
+      modernWaterfallNightstand1,
+      modernWaterfallNightstand2,
+      modernWaterfallNightstand3,
+      modernWaterfallNightstand4,
     ],
-    eyebrow: 'Decorative vertical design',
-    badge: 'Custom builds available',
-    priceLabel: 'Custom quote available',
+    details: [
+      'Handcrafted from solid wood',
+      'Modern waterfall-edge design',
+      'Seamless mitered corners',
+      'Smooth-gliding storage drawer',
+      'Open lower shelf',
+      'Furniture-grade craftsmanship',
+      'Smooth sanded finish',
+      'Custom stain and paint options available',
+      'Custom sizes and finishes available',
+      'Built to order',
+    ],
+    eyebrow: 'Bedroom furniture',
+    badge: 'Waterfall design',
+    priceLabel: 'Starting at $200',
+  },
+  {
+    title: 'Handmade Entryway Key Holder & Shelf',
+    description:
+      'A handcrafted wall-mounted entryway organizer with a spacious display shelf and sturdy hooks for keys, wallets, sunglasses, mail, bags, and other everyday essentials. Built with a clean modern farmhouse look that adds function and style to your entryway, mudroom, kitchen, or office.',
+    images: [entrywayKeyHolder1, entrywayKeyHolder2, entrywayKeyHolder3],
+    details: [
+      'Handcrafted from solid wood',
+      'Spacious display shelf',
+      'Multiple heavy-duty key hooks',
+      'Clean, modern farmhouse design',
+      'Smooth sanded finish',
+      'Strong wall-mounted construction',
+      'Furniture-grade craftsmanship',
+      'Great for entryways, mudrooms, kitchens, offices, garages, and laundry rooms',
+      'Custom sizes, finishes, and hook styles available',
+      'Built to order',
+    ],
+    eyebrow: 'Entryway organization',
+    badge: 'Wall mounted',
+    priceLabel: 'Starting at $95',
+  },
+  {
+    title: 'Classic Tall Bookcase Cabinet',
+    description:
+      'A handcrafted tall bookcase cabinet with adjustable shelves, open display space, and a large hidden drawer for extra storage. Built with a classic furniture-style design that works well in living rooms, offices, bedrooms, entryways, and reading spaces.',
+    images: [
+      classicBookcaseCabinet1,
+      classicBookcaseCabinet2,
+      classicBookcaseCabinet3,
+      classicBookcaseCabinet4,
+      classicBookcaseCabinet5,
+      classicBookcaseCabinet6,
+    ],
+    details: [
+      'Handcrafted bookcase cabinet',
+      'Multiple adjustable shelves',
+      'Large full-extension hidden storage drawer',
+      'Solid wood top and furniture-grade construction',
+      'Open display space for books, photos, collectibles, and decor',
+      'Decorative trim and furniture-style details',
+      'Classic farmhouse, transitional, and traditional design',
+      'Dimensions: 38.5" wide x 12" deep x 72" tall',
+      'Custom paint, stain, shelf configuration, and hardware options available',
+      'Built to order',
+    ],
+    eyebrow: 'Bookcases & storage',
+    badge: 'Adjustable shelves',
+    priceLabel: 'Starting at $350',
+  },
+  {
+    title: 'Mid-Century Modern Sofa Table',
+    description:
+      'A handcrafted sofa table custom built to fit your space. Perfect behind a couch, in an entryway, hallway, or living room, with a clean modern minimalist design and solid handcrafted construction.',
+    images: [midCenturySofaTable1, midCenturySofaTable2, midCenturySofaTable3],
+    details: [
+      'Custom built to your dimensions',
+      'Modern minimalist design',
+      'Great for behind couches, hallways, entryways, and living rooms',
+      'Solid handcrafted construction',
+      'Built to order',
+      'Custom lengths, heights, and depths available',
+      'Custom wood species, stain colors, and painted finishes available',
+      'Shown example: 9.5 feet long x 28 inches tall',
+      'Pricing depends on size and options',
+    ],
+    eyebrow: 'Console & sofa tables',
+    badge: 'Custom sizes',
+    priceLabel: 'Starting at $200',
   },
 ];

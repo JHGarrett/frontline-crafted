@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Container, Grid, Stack, Typography } from '@mui/material';
+import { Box, Button, Container, Grid, Stack, Typography } from '@mui/material';
 import { ProductCard } from './ProductCard';
 import { ProductModal } from './ProductModal';
 import type { Product } from '../types';
@@ -7,6 +7,8 @@ import type { Product } from '../types';
 type ProductsSectionProps = {
   products: Product[];
 };
+
+const FACEBOOK_MARKETPLACE_PROFILE_URL = 'https://www.facebook.com/marketplace/profile/771065626/';
 
 export const ProductsSection = ({ products }: ProductsSectionProps) => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -62,7 +64,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
             }}
           >
             Browse current builds and open each piece to view more photos, details, and custom order
-            options.{' '}
+            options.
           </Typography>
         </Stack>
 
@@ -73,6 +75,47 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
             </Grid>
           ))}
         </Grid>
+
+        <Box
+          sx={{
+            mt: { xs: 5, md: 6 },
+            p: { xs: 3, md: 4 },
+            borderRadius: 4,
+            border: '1px solid',
+            borderColor: 'divider',
+            bgcolor: 'background.paper',
+            textAlign: 'center',
+          }}
+        >
+          <Stack spacing={2} alignItems="center">
+            <Typography variant="h5" sx={{ fontWeight: 700 }}>
+              Looking for more available pieces?
+            </Typography>
+
+            <Typography
+              sx={{
+                maxWidth: 680,
+                color: 'text.secondary',
+                lineHeight: 1.8,
+              }}
+            >
+              I keep additional builds and made-to-order listings on Facebook Marketplace. Open my
+              Marketplace profile and scroll down to see all current available pieces, pricing, and
+              availability.
+            </Typography>
+
+            <Button
+              component="a"
+              href={FACEBOOK_MARKETPLACE_PROFILE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="contained"
+              size="large"
+            >
+              View More on Facebook Marketplace
+            </Button>
+          </Stack>
+        </Box>
 
         <ProductModal
           open={!!selectedProduct}

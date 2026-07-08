@@ -1,5 +1,5 @@
 import { Box, Container, Grid, Typography } from '@mui/material';
-import cibBadge from '../assets/images/Combat_Infantry_Badge.svg.png';
+import afghanistanMe from '../assets/images/Afghanistan-Me.jpg';
 
 export const MakerSection = () => {
   return (
@@ -17,23 +17,22 @@ export const MakerSection = () => {
           <Grid size={{ xs: 12, md: 4 }}>
             <Box
               sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                p: 5,
                 borderRadius: 6,
                 border: '1px solid',
                 borderColor: 'divider',
                 bgcolor: '#111',
+                overflow: 'hidden',
+                boxShadow: '0 24px 70px rgba(0,0,0,0.35)',
               }}
             >
               <Box
                 component="img"
-                src={cibBadge}
-                alt="Combat Infantryman Badge"
+                src={afghanistanMe}
+                alt="John during military service in Afghanistan"
                 sx={{
-                  maxWidth: 160,
-                  height: 'auto',
+                  width: '100%',
+                  height: { xs: 420, md: 520 },
+                  objectFit: 'cover',
                   display: 'block',
                 }}
               />
