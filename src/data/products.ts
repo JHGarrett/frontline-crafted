@@ -49,7 +49,7 @@ import carrington4 from '../assets/products/the-carrington/the-carrington-04.jpe
 import carrington5 from '../assets/products/the-carrington/the-carrington-05.web.jpg';
 import carrington6 from '../assets/products/the-carrington/the-carrington-06.web.jpg';
 import carrington7 from '../assets/products/the-carrington/the-carrington-07.web.jpg';
-import hollisVideo from '../assets/products/the-hollis/the-hollis.mp4';
+import hollisVideo from '../assets/products/the-hollis/the-hollis-smooth.mp4';
 import hollis1 from '../assets/products/the-hollis/the-hollis-01.jpeg';
 import hollis2 from '../assets/products/the-hollis/the-hollis-02.web.jpg';
 import hollis3 from '../assets/products/the-hollis/the-hollis-03.web.jpg';

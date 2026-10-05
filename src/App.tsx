@@ -15,7 +15,7 @@ import { WeatherfordWoodworkingPage } from './pages/WeatherfordWoodworkingPage';
 import { galleryImages } from './data/galleryImages';
 import { featuredProducts } from './data/products';
 import coverPhoto from './assets/products/the-hollis/the-hollis-01.jpeg';
-import hollisVideo from './assets/products/the-hollis/the-hollis.mp4';
+import hollisVideo from './assets/products/the-hollis/the-hollis-smooth.mp4';
 import { CustomBuildSection } from './components/CustomBuildSection.tsx';
 
 const navItems = [
