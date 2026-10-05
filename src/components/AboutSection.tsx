@@ -28,7 +28,7 @@ export const AboutSection = ({ description, values }: AboutSectionProps) => {
                 fontWeight: 700,
               }}
             >
-              About / Values
+              The Frontline Crafted approach
             </Typography>
 
             <Typography
@@ -64,13 +64,14 @@ export const AboutSection = ({ description, values }: AboutSectionProps) => {
                     sx={{
                       height: '100%',
                       borderRadius: 3,
-                      bgcolor: '#161616',
-                      border: '1px solid rgba(255,255,255,0.06)',
-                      boxShadow: '0 18px 40px rgba(0,0,0,0.35)',
+                      bgcolor: 'background.default',
+                      border: '1px solid',
+                      borderColor: 'divider',
+                      boxShadow: 'none',
                       transition: 'transform 0.25s ease, box-shadow 0.25s ease',
                       '&:hover': {
                         transform: 'translateY(-6px)',
-                        boxShadow: '0 28px 60px rgba(0,0,0,0.45)',
+                        boxShadow: '0 8px 24px rgba(0,0,0,0.06)',
                       },
                     }}
                   >
@@ -91,7 +92,7 @@ export const AboutSection = ({ description, values }: AboutSectionProps) => {
                           fontWeight: 700,
                           letterSpacing: '0.14em',
                           textTransform: 'uppercase',
-                          color: 'common.white',
+                          color: 'text.primary',
                         }}
                       >
                         {value.title}
@@ -100,7 +101,7 @@ export const AboutSection = ({ description, values }: AboutSectionProps) => {
                       <Typography
                         sx={{
                           mt: 2,
-                          color: 'rgba(255,255,255,0.72)',
+                          color: 'text.secondary',
                           lineHeight: 1.8,
                           fontSize: '0.95rem',
                         }}

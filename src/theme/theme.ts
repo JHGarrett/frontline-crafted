@@ -2,50 +2,31 @@ import { createTheme } from '@mui/material/styles';
 
 export const theme = createTheme({
   palette: {
-    mode: 'dark',
-    primary: {
-      main: '#d4a373',
-    },
-    background: {
-      default: '#0f0d0b',
-      paper: '#181411',
-    },
-    text: {
-      primary: '#f5f0ea',
-      secondary: '#b8aea3',
-    },
+    mode: 'light',
+    primary: { main: '#795338', contrastText: '#fffaf4' },
+    background: { default: '#f7f4ee', paper: '#fffdf9' },
+    text: { primary: '#292923', secondary: '#666459' },
+    divider: '#ded8cd',
   },
-
-  shape: {
-    borderRadius: 20,
-  },
-
+  shape: { borderRadius: 6 },
   typography: {
     fontFamily: 'Inter, Arial, sans-serif',
-    h1: {
-      fontWeight: 800,
-      textTransform: 'uppercase',
-    },
-    h2: {
-      fontWeight: 700,
-      textTransform: 'uppercase',
-    },
-    button: {
-      fontWeight: 700,
-      letterSpacing: '0.12em',
-      textTransform: 'uppercase',
-    },
+    h1: { fontFamily: 'Georgia, serif', fontWeight: 400, letterSpacing: '-0.045em' },
+    h2: { fontFamily: 'Georgia, serif', fontWeight: 400, letterSpacing: '-0.035em' },
+    h3: { fontFamily: 'Georgia, serif', fontWeight: 400 },
+    h5: { fontFamily: 'Georgia, serif', fontWeight: 400 },
+    button: { fontWeight: 600, textTransform: 'none', letterSpacing: '0.02em' },
   },
-
   components: {
+    MuiButton: {
+      styleOverrides: { root: { borderRadius: 2, boxShadow: 'none', padding: '12px 24px' } },
+    },
     MuiCssBaseline: {
       styleOverrides: {
-        html: {
-          scrollBehavior: 'smooth',
-        },
-        section: {
-          scrollMarginTop: '100px',
-        },
+        html: { scrollBehavior: 'smooth' },
+        section: { scrollMarginTop: '100px' },
+        '::selection': { background: '#dfc9ac' },
+        '@media (prefers-reduced-motion: reduce)': { html: { scrollBehavior: 'auto' } },
       },
     },
   },

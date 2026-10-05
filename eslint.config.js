@@ -5,6 +5,8 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import prettier from 'eslint-config-prettier';
 
 export default [
+  { ignores: ['dist/**', 'dist-ssr/**', 'node_modules/**'] },
+  { files: ['scripts/**/*.mjs'], languageOptions: { globals: { console: 'readonly' } } },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {

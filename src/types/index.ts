@@ -1,4 +1,7 @@
 export type Product = {
+  category?: string;
+  video?: string;
+  sections?: { title: string; body: string }[];
   title: string;
   description: string;
   images: string[];

@@ -24,3 +24,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Original product animations are kept locally; the site uses optimized MP4s.
+/src/assets/products/the-*/*.gif

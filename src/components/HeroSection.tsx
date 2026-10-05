@@ -1,136 +1,151 @@
-import { Box, Button, Container, Grid, Stack, Typography } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
+import { useRef, useState } from 'react';
+import { Box, Button, Container, Stack, Typography, useMediaQuery } from '@mui/material';
 
 type HeroSectionProps = {
   title: string;
   description: string;
   image: string;
+  video?: string;
+  featuredName: string;
+  featuredType: string;
 };
 
-export const HeroSection = ({ title, description, image }: HeroSectionProps) => {
+export const HeroSection = ({
+  title,
+  description,
+  image,
+  video,
+  featuredName,
+  featuredType,
+}: HeroSectionProps) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
+  const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
   return (
-    <Box
-      component="section"
-      sx={{
-        borderBottom: '1px solid',
-        borderColor: 'divider',
-        background: 'radial-gradient(circle at top, rgba(212,163,115,0.18), transparent 30%)',
-      }}
-    >
-      <Container maxWidth="lg" sx={{ py: { xs: 10, md: 14 } }}>
-        <Grid container spacing={6} alignItems="center">
-          <Grid size={{ xs: 12, md: 7 }}>
-            <Typography variant="overline" sx={{ color: 'primary.main', letterSpacing: '0.3em' }}>
-              Veteran-Owned Woodworking
+    <Box component="section">
+      <Container maxWidth="xl" sx={{ py: { xs: 4, md: 7 } }}>
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: { xs: 'minmax(0, 1fr)', md: 'minmax(0, 0.85fr) minmax(0, 1.4fr)' },
+            gap: { xs: 4, md: 7 },
+            alignItems: 'center',
+          }}
+        >
+          <Box sx={{ py: { md: 4 }, order: { xs: 2, md: 1 } }}>
+            <Typography variant="overline" sx={{ letterSpacing: '0.2em', color: 'primary.main' }}>
+              Handcrafted in Parker County, Texas
             </Typography>
-
             <Typography
               variant="h1"
               sx={{
                 mt: 2,
-                maxWidth: 720,
-                fontSize: { xs: '3rem', md: '5rem' },
-                lineHeight: 1.05,
+                fontSize: { xs: '3.1rem', md: '4.8rem' },
+                lineHeight: 1.04,
+                maxWidth: 560,
               }}
             >
               {title}
             </Typography>
-
-            <Typography
-              sx={{
-                mt: 3,
-                maxWidth: 640,
-                color: 'text.secondary',
-                fontSize: { xs: '1rem', md: '1.125rem' },
-                lineHeight: 1.8,
-                whiteSpace: 'pre-line',
-              }}
-            >
+            <Typography sx={{ mt: 3, maxWidth: 460, color: 'text.secondary', lineHeight: 1.85 }}>
               {description}
             </Typography>
-
-            <Typography
-              sx={{
-                mt: 2,
-                fontWeight: 600,
-                color: 'text.primary',
-              }}
-            >
-              🇺🇸 Veteran-Owned & Operated | Handcrafted in Texas
-            </Typography>
-
             <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mt: 4 }}>
-              <Button href="#pieces" variant="contained" size="large" sx={{ px: 4, py: 1.5 }}>
-                View Available Pieces
+              <Button href="#pieces" variant="contained">
+                Explore the collection
               </Button>
-
-              <Button
-                component={RouterLink}
-                to="/configurator"
-                variant="outlined"
-                size="large"
-                sx={{ px: 4, py: 1.5 }}
-              >
-                Get a Price Estimate
-              </Button>
-
-              <Button
-                href="#contact"
-                variant="outlined"
-                size="large"
-                sx={{
-                  px: 4,
-                  py: 1.5,
-                  borderColor: 'rgba(255,255,255,0.2)',
-                  color: 'text.primary',
-                }}
-              >
-                Request a Custom Build
+              <Button href="#custom" variant="outlined">
+                Create something custom
               </Button>
             </Stack>
-
             <Typography
-              sx={{
-                mt: 2,
-                color: 'text.secondary',
-                fontSize: '0.95rem',
-              }}
+              sx={{ mt: 4, color: 'text.secondary', fontSize: '0.8rem', letterSpacing: '0.08em' }}
             >
-              Prefer to talk through your project?{' '}
-              <Box
-                component="a"
-                href="sms:8173309747"
-                sx={{
-                  color: 'text.primary',
-                  fontWeight: 600,
-                  textDecoration: 'none',
-                  '&:hover': { textDecoration: 'underline' },
-                }}
-              >
-                Text (817) 330-9747
-              </Box>
+              VETERAN OWNED · MADE TO ORDER
             </Typography>
-          </Grid>
-
-          <Grid size={{ xs: 12, md: 5 }}>
-            <Box
-              component="img"
-              src={image}
-              loading="eager"
-              alt="Handcrafted outdoor furniture"
-              sx={{
-                width: '100%',
-                height: { xs: 380, md: 520 },
-                objectFit: 'cover',
-                objectPosition: '85% center',
-                borderRadius: 6,
-                display: 'block',
-                boxShadow: '0 24px 60px rgba(0,0,0,0.35)',
-              }}
-            />
-          </Grid>
-        </Grid>
+          </Box>
+          <Box sx={{ order: { xs: 1, md: 2 } }}>
+            {video ? (
+              <Box
+                component="video"
+                ref={videoRef}
+                onPlay={() => setPlaying(true)}
+                onPause={() => setPlaying(false)}
+                src={video}
+                poster={image}
+                autoPlay={!reducedMotion}
+                muted
+                loop
+                playsInline
+                controls={reducedMotion}
+                aria-label={`${featuredName} ${featuredType} showcase`}
+                sx={{ width: '100%', aspectRatio: '16 / 9', display: 'block', objectFit: 'cover' }}
+              />
+            ) : (
+              <Box
+                component="img"
+                src={image}
+                alt={`${featuredName} by Frontline Crafted`}
+                sx={{ width: '100%', display: 'block' }}
+              />
+            )}
+            {video && (
+              <Button
+                variant="text"
+                size="small"
+                aria-label={playing ? 'Pause furniture animation' : 'Play furniture animation'}
+                onClick={() => {
+                  if (videoRef.current?.paused) {
+                    void videoRef.current.play().catch(() => setPlaying(false));
+                  } else {
+                    videoRef.current?.pause();
+                  }
+                }}
+                sx={{ mt: 1 }}
+              >
+                {playing ? 'Pause animation' : 'Play animation'}
+              </Button>
+            )}
+            <Stack
+              direction={{ xs: 'column', sm: 'row' }}
+              spacing={0.5}
+              justifyContent="space-between"
+              sx={{ mt: 1.5, borderBottom: '1px solid', borderColor: 'divider', pb: 1.5 }}
+            >
+              <Typography sx={{ fontSize: '0.85rem' }}>{featuredName}</Typography>
+              <Typography sx={{ fontSize: '0.85rem', color: 'text.secondary' }}>
+                {featuredType}
+              </Typography>
+            </Stack>
+          </Box>
+        </Box>
       </Container>
+      <Box
+        sx={{
+          borderTop: '1px solid',
+          borderBottom: '1px solid',
+          borderColor: 'divider',
+          py: 2,
+          px: 3,
+        }}
+      >
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          spacing={{ xs: 1, sm: 5 }}
+          justifyContent="center"
+          textAlign="center"
+        >
+          {[
+            'Built around your space',
+            'Handcrafted one at a time',
+            'Local pickup & delivery options',
+          ].map((text) => (
+            <Typography key={text} sx={{ fontSize: '0.85rem', color: 'text.secondary' }}>
+              {text}
+            </Typography>
+          ))}
+        </Stack>
+      </Box>
     </Box>
   );
 };

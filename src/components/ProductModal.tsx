@@ -8,24 +8,30 @@ import {
   IconButton,
   Stack,
   Typography,
+  useMediaQuery,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { PhotoViewer } from './PhotoViewer';
 import type { Product } from '../types';
 
 type ProductModalProps = {
   open: boolean;
   product: Product | null;
   onClose: () => void;
+  onInquire?: (title: string) => void;
 };
 
-export const ProductModal = ({ open, product, onClose }: ProductModalProps) => {
+export const ProductModal = ({ open, product, onClose, onInquire }: ProductModalProps) => {
+  const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
   const [selectedImage, setSelectedImage] = useState('');
+  const [photoIndex, setPhotoIndex] = useState<number | null>(null);
 
   useEffect(() => {
     if (product?.images?.length) {
-      setSelectedImage(product.images[0]);
+      setSelectedImage(product.video ?? product.images[0]);
+      setPhotoIndex(null);
     }
-  }, [product]);
+  }, [product, open]);
 
   if (!product) {
     return null;
@@ -37,10 +43,11 @@ export const ProductModal = ({ open, product, onClose }: ProductModalProps) => {
       onClose={onClose}
       maxWidth="lg"
       fullWidth
+      aria-labelledby="product-modal-title"
       PaperProps={{
         sx: {
           bgcolor: 'background.paper',
-          borderRadius: 4,
+          borderRadius: 1,
           border: '1px solid',
           borderColor: 'divider',
           overflow: 'hidden',
@@ -74,7 +81,10 @@ export const ProductModal = ({ open, product, onClose }: ProductModalProps) => {
         <Box
           sx={{
             display: 'grid',
-            gridTemplateColumns: { xs: '1fr', md: '1.08fr 0.92fr' },
+            gridTemplateColumns: {
+              xs: 'minmax(0, 1fr)',
+              md: 'minmax(0, 1.08fr) minmax(0, 0.92fr)',
+            },
             gap: { xs: 3, md: 5 },
             alignItems: 'start',
           }}
@@ -83,7 +93,7 @@ export const ProductModal = ({ open, product, onClose }: ProductModalProps) => {
             <Box
               sx={{
                 position: 'relative',
-                borderRadius: 4,
+                borderRadius: 1,
                 overflow: 'hidden',
                 border: '1px solid',
                 borderColor: 'divider',
@@ -107,20 +117,47 @@ export const ProductModal = ({ open, product, onClose }: ProductModalProps) => {
                 />
               ) : null}
 
-              <Box
-                component="img"
-                src={selectedImage}
-                alt={product.title}
-                sx={{
-                  width: '100%',
-                  height: { xs: 320, md: 540 },
-                  objectFit: 'cover',
-                  display: 'block',
-                }}
-              />
+              {product.video && selectedImage === product.video ? (
+                <Box
+                  component="video"
+                  src={product.video}
+                  poster={product.images[0]}
+                  autoPlay={!reducedMotion}
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  aria-label={`${product.title} showcase`}
+                  sx={{
+                    width: '100%',
+                    height: { xs: 320, md: 540 },
+                    objectFit: 'contain',
+                    display: 'block',
+                  }}
+                />
+              ) : (
+                <Box
+                  component="img"
+                  src={selectedImage}
+                  alt={`${product.title} — ${product.eyebrow ?? 'handcrafted furniture'}`}
+                  onClick={() => setPhotoIndex(product.images.indexOf(selectedImage))}
+                  sx={{
+                    cursor: 'zoom-in',
+                    width: '100%',
+                    height: { xs: 320, md: 540 },
+                    objectFit: 'contain',
+                    display: 'block',
+                  }}
+                />
+              )}
             </Box>
 
-            {product.images.length > 1 && (
+            {selectedImage !== product.video && (
+              <Button onClick={() => setPhotoIndex(product.images.indexOf(selectedImage))}>
+                Enlarge photo
+              </Button>
+            )}
+            {(product.video || product.images.length > 1) && (
               <Stack
                 direction="row"
                 spacing={1.5}
@@ -129,13 +166,23 @@ export const ProductModal = ({ open, product, onClose }: ProductModalProps) => {
                   flexWrap: 'wrap',
                 }}
               >
-                {product.images.map((image) => (
+                {product.video && (
+                  <Button
+                    onClick={() => setSelectedImage(product.video!)}
+                    aria-pressed={selectedImage === product.video}
+                    variant="outlined"
+                  >
+                    Watch showcase
+                  </Button>
+                )}
+                {product.images.map((image, index) => (
                   <Box
                     key={image}
                     component="button"
                     type="button"
                     onClick={() => setSelectedImage(image)}
-                    aria-label={`View ${product.title} thumbnail`}
+                    aria-label={`View ${product.title} photo ${index + 1}`}
+                    aria-pressed={selectedImage === image}
                     sx={{
                       p: 0,
                       border: 'none',
@@ -148,11 +195,11 @@ export const ProductModal = ({ open, product, onClose }: ProductModalProps) => {
                     <Box
                       component="img"
                       src={image}
-                      alt={product.title}
+                      alt={`${product.title} — ${product.eyebrow ?? 'handcrafted furniture'}`}
                       sx={{
                         width: 88,
                         height: 88,
-                        objectFit: 'cover',
+                        objectFit: 'contain',
                         borderRadius: 2.5,
                         border: '2px solid',
                         borderColor: selectedImage === image ? 'primary.main' : 'divider',
@@ -202,6 +249,7 @@ export const ProductModal = ({ open, product, onClose }: ProductModalProps) => {
                 ) : null}
 
                 <Typography
+                  id="product-modal-title"
                   variant="h3"
                   sx={{
                     mt: 1.25,
@@ -227,16 +275,43 @@ export const ProductModal = ({ open, product, onClose }: ProductModalProps) => {
                 </Typography>
               ) : null}
 
-              <Typography
+              <Box
                 sx={{
-                  color: 'text.secondary',
-                  lineHeight: 1.9,
-                  fontSize: '1rem',
+                  pt: 2,
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: 2,
+                  alignItems: 'center',
                 }}
               >
-                {product.description}
-              </Typography>
+                <Button
+                  href="#contact"
+                  variant="contained"
+                  size="large"
+                  onClick={() => {
+                    onInquire?.(product.title);
+                    onClose();
+                  }}
+                  sx={{
+                    px: 4,
+                    minWidth: 220,
+                    borderRadius: 999,
+                    textTransform: 'none',
+                    fontWeight: 700,
+                  }}
+                >
+                  Inquire About {product.title}
+                </Button>
 
+                <Typography
+                  sx={{
+                    color: 'text.secondary',
+                    fontSize: '0.95rem',
+                  }}
+                >
+                  Custom builds and finish options available.
+                </Typography>
+              </Box>
               {!!product.details?.length && (
                 <Stack spacing={1.25} sx={{ pt: 1 }}>
                   {product.details.map((detail) => (
@@ -271,44 +346,34 @@ export const ProductModal = ({ open, product, onClose }: ProductModalProps) => {
                 </Stack>
               )}
 
-              <Box
+              <Typography
                 sx={{
-                  pt: 2,
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  gap: 2,
-                  alignItems: 'center',
+                  color: 'text.secondary',
+                  lineHeight: 1.9,
+                  fontSize: '1rem',
                 }}
               >
-                <Button
-                  href="#contact"
-                  variant="contained"
-                  size="large"
-                  onClick={onClose}
-                  sx={{
-                    px: 4,
-                    minWidth: 220,
-                    borderRadius: 999,
-                    textTransform: 'none',
-                    fontWeight: 700,
-                  }}
-                >
-                  Inquire About {product.title}
-                </Button>
+                {product.description}
+              </Typography>
 
-                <Typography
-                  sx={{
-                    color: 'text.secondary',
-                    fontSize: '0.95rem',
-                  }}
-                >
-                  Custom builds and finish options available.
-                </Typography>
-              </Box>
+              {product.sections?.map((section) => (
+                <Box key={section.title}>
+                  <Typography variant="h6">{section.title}</Typography>
+                  <Typography sx={{ color: 'text.secondary', lineHeight: 1.8, mt: 1 }}>
+                    {section.body}
+                  </Typography>
+                </Box>
+              ))}
             </Stack>
           </Box>
         </Box>
       </DialogContent>
+      <PhotoViewer
+        images={product.images}
+        index={photoIndex}
+        onChange={setPhotoIndex}
+        title={product.title}
+      />
     </Dialog>
   );
 };

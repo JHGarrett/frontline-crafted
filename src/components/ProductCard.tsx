@@ -20,7 +20,7 @@ export const ProductCard = ({ product, onSelect }: ProductCardProps) => {
     <Card
       sx={{
         height: '100%',
-        borderRadius: 3,
+        borderRadius: 1,
         overflow: 'hidden',
         bgcolor: 'background.paper',
         border: '1px solid',
@@ -57,11 +57,12 @@ export const ProductCard = ({ product, onSelect }: ProductCardProps) => {
           <CardMedia
             component="img"
             image={product.images[0]}
-            alt={product.title}
+            alt={`${product.title} — ${product.eyebrow ?? 'handcrafted furniture'} by Frontline Crafted`}
+            loading="lazy"
             sx={{
               height: 280,
               width: '100%',
-              objectFit: 'cover',
+              objectFit: 'contain',
               transition: 'transform 0.35s ease',
             }}
           />
@@ -108,9 +109,10 @@ export const ProductCard = ({ product, onSelect }: ProductCardProps) => {
 
             <Typography
               variant="h5"
+              component="h3"
               sx={{
                 fontSize: '1.3rem',
-                fontWeight: 700,
+                fontWeight: 400,
                 lineHeight: 1.2,
               }}
             >

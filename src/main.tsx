@@ -12,6 +12,10 @@ if (!rootElement) {
   throw new Error('Root element not found');
 }
 
+// Static HTML supplies metadata to crawlers; React 19 owns these tags after startup.
+// Remove the static copies so navigation cannot leave duplicate canonicals or titles.
+document.head.querySelectorAll('[data-rh="true"]').forEach((tag) => tag.remove());
+
 createRoot(rootElement).render(
   <StrictMode>
     <HelmetProvider>

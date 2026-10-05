@@ -1,16 +1,24 @@
 import { useState } from 'react';
-import { Box, Button, Container, Grid, Stack, Typography } from '@mui/material';
+import { Box, Button, Container, Grid, Chip, Stack, Typography } from '@mui/material';
 import { ProductCard } from './ProductCard';
 import { ProductModal } from './ProductModal';
 import type { Product } from '../types';
 
 type ProductsSectionProps = {
   products: Product[];
+  onInquire?: (title: string) => void;
 };
 
-const FACEBOOK_MARKETPLACE_PROFILE_URL = 'https://www.facebook.com/marketplace/profile/771065626/';
-
-export const ProductsSection = ({ products }: ProductsSectionProps) => {
+export const ProductsSection = ({ products, onInquire }: ProductsSectionProps) => {
+  const [category, setCategory] = useState('All pieces');
+  const categories = [
+    'All pieces',
+    ...new Set(products.map((product) => product.category ?? 'Other')),
+  ];
+  const visibleProducts =
+    category === 'All pieces'
+      ? products
+      : products.filter((product) => (product.category ?? 'Other') === category);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   return (
@@ -40,7 +48,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
               fontWeight: 700,
             }}
           >
-            Handcrafted Furniture
+            Original designs. Made for you.
           </Typography>
 
           <Typography
@@ -52,7 +60,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
               letterSpacing: '-0.02em',
             }}
           >
-            Featured Pieces
+            The collection
           </Typography>
 
           <Typography
@@ -63,13 +71,35 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
               fontSize: { xs: '1rem', md: '1.05rem' },
             }}
           >
-            Browse current builds and open each piece to view more photos, details, and custom order
-            options.
+            Find a piece that speaks to you. Explore its details, then make it your own with custom
+            dimensions, materials, and finishes.
           </Typography>
         </Stack>
 
+        <Stack
+          direction="row"
+          useFlexGap
+          flexWrap="wrap"
+          spacing={1}
+          sx={{ mb: 4 }}
+          aria-label="Filter furniture collection"
+        >
+          {categories.map((item) => (
+            <Chip
+              key={item}
+              label={item}
+              onClick={() => setCategory(item)}
+              aria-pressed={category === item}
+              color={category === item ? 'primary' : 'default'}
+              variant={category === item ? 'filled' : 'outlined'}
+            />
+          ))}
+        </Stack>
+        <Typography role="status" sx={{ mb: 2, color: 'text.secondary', fontSize: '0.85rem' }}>
+          {visibleProducts.length} pieces
+        </Typography>
         <Grid container spacing={{ xs: 3, md: 4 }}>
-          {products.map((product) => (
+          {visibleProducts.map((product) => (
             <Grid key={product.title} size={{ xs: 12, sm: 6, md: 4 }}>
               <ProductCard product={product} onSelect={setSelectedProduct} />
             </Grid>
@@ -89,7 +119,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
         >
           <Stack spacing={2} alignItems="center">
             <Typography variant="h5" sx={{ fontWeight: 700 }}>
-              Looking for more available pieces?
+              Have something else in mind?
             </Typography>
 
             <Typography
@@ -99,20 +129,12 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
                 lineHeight: 1.8,
               }}
             >
-              I keep additional builds and made-to-order listings on Facebook Marketplace. Open my
-              Marketplace profile and scroll down to see all current available pieces, pricing, and
-              availability.
+              Start with an original idea or adapt a design from the collection. Let’s build
+              something around your space.
             </Typography>
 
-            <Button
-              component="a"
-              href={FACEBOOK_MARKETPLACE_PROFILE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="contained"
-              size="large"
-            >
-              View More on Facebook Marketplace
+            <Button component="a" href="#contact" variant="contained" size="large">
+              Discuss a custom build
             </Button>
           </Stack>
         </Box>
@@ -121,6 +143,7 @@ export const ProductsSection = ({ products }: ProductsSectionProps) => {
           open={!!selectedProduct}
           product={selectedProduct}
           onClose={() => setSelectedProduct(null)}
+          onInquire={onInquire}
         />
       </Container>
     </Box>

@@ -47,6 +47,7 @@ export const Header = ({ navItems }: HeaderProps) => {
           borderBottom: '1px solid',
           borderColor: 'divider',
           backdropFilter: 'blur(12px)',
+          bgcolor: 'rgba(247,244,238,0.96)',
         }}
       >
         <Container maxWidth="lg">
@@ -67,14 +68,16 @@ export const Header = ({ navItems }: HeaderProps) => {
                   src={logo}
                   alt="Frontline Crafted"
                   sx={{
-                    height: 48,
+                    height: { xs: 40, sm: 48 },
                     width: 'auto',
+                    maxWidth: { xs: 150, sm: 210 },
+                    objectFit: 'contain',
                     display: 'block',
                   }}
                 />
               </Box>
 
-              <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+              <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
                 <Typography
                   variant="caption"
                   sx={{ letterSpacing: '0.22em', color: 'text.secondary' }}
@@ -84,7 +87,7 @@ export const Header = ({ navItems }: HeaderProps) => {
               </Box>
             </Box>
 
-            <Stack direction="row" spacing={3} sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <Stack direction="row" spacing={2} sx={{ display: { xs: 'none', md: 'flex' } }}>
               {navItems.map((item) => {
                 const isAnchorLink = item.href.startsWith('#');
 
@@ -133,6 +136,7 @@ export const Header = ({ navItems }: HeaderProps) => {
                 href="https://www.facebook.com/frontlinecrafted"
                 target="_blank"
                 rel="noopener"
+                aria-label="Visit Frontline Crafted on Facebook"
                 color="inherit"
               >
                 <FacebookIcon />
@@ -143,6 +147,7 @@ export const Header = ({ navItems }: HeaderProps) => {
                 href="https://www.instagram.com/frontlinecrafted"
                 target="_blank"
                 rel="noopener"
+                aria-label="Visit Frontline Crafted on Instagram"
                 color="inherit"
               >
                 <InstagramIcon />

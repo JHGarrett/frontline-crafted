@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import {
   Alert,
@@ -19,7 +19,6 @@ import {
 
 import CallOutlinedIcon from '@mui/icons-material/CallOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import SmsOutlinedIcon from '@mui/icons-material/SmsOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -42,8 +41,25 @@ const initialValues: FormValues = {
   company: '',
 };
 
-export const ContactSection = () => {
+export const ContactSection = ({
+  inquiryProduct = '',
+  inquiryRevision = 0,
+}: {
+  inquiryProduct?: string;
+  inquiryRevision?: number;
+}) => {
   const [formValues, setFormValues] = useState<FormValues>(initialValues);
+  useEffect(() => {
+    if (inquiryProduct) {
+      setFormValues((prev) => ({
+        ...prev,
+        interest: 'Collection piece',
+        message: `I'm interested in ${inquiryProduct}.\n\nPreferred dimensions, wood, and finish: `,
+      }));
+      setIsSuccess(false);
+      setErrorMessage('');
+    }
+  }, [inquiryProduct, inquiryRevision]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -107,47 +123,11 @@ export const ContactSection = () => {
     <Box component="section" id="contact" sx={{ py: { xs: 10, md: 12 } }}>
       <Container maxWidth="lg">
         <Stack spacing={4}>
-          <Box
-            sx={(theme) => ({
-              backgroundColor: theme.palette.background.paper,
-              borderRadius: 3,
-              overflow: 'hidden',
-              border: '1px solid',
-              borderColor: 'divider',
-              boxShadow: theme.shadows[2],
-            })}
-          >
-            <Box
-              component="iframe"
-              title="Frontline Crafted service area map"
-              src="https://www.google.com/maps?q=Weatherford,+TX&z=10&output=embed"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              sx={{
-                width: '100%',
-                height: { xs: 280, md: 340 },
-                border: 0,
-                display: 'block',
-              }}
-            />
-
-            <Box sx={{ p: 2.5 }}>
-              <Typography variant="h6" sx={{ mb: 0.5 }}>
-                Proudly serving Weatherford and surrounding areas
-              </Typography>
-
-              <Typography variant="body2" color="text.secondary">
-                Custom woodworking for Weatherford, Aledo, Fort Worth, Hudson Oaks, Willow Park,
-                Springtown, Azle, and nearby communities.
-              </Typography>
-            </Box>
-          </Box>
-
-          <Typography variant="h3">Contact Frontline Crafted</Typography>
+          <Typography variant="h3">Let’s make something yours.</Typography>
 
           <Typography variant="body1" color="text.secondary">
-            Have a custom project in mind or interested in one of our pieces? Send us a message,
-            call, or text.
+            Tell me about your space, the piece you have in mind, and the details that matter to
+            you. Text is the fastest way to get started.
           </Typography>
 
           <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
@@ -174,18 +154,6 @@ export const ContactSection = () => {
           </Stack>
 
           <Stack direction="row" spacing={1}>
-            <Tooltip title="Call">
-              <IconButton component="a" href="tel:+18173309747" color="primary">
-                <CallOutlinedIcon />
-              </IconButton>
-            </Tooltip>
-
-            <Tooltip title="Text">
-              <IconButton component="a" href="sms:+18173309747" color="primary">
-                <SmsOutlinedIcon />
-              </IconButton>
-            </Tooltip>
-
             <Tooltip title="Email">
               <IconButton component="a" href="mailto:john@frontlinecrafted.com" color="primary">
                 <EmailOutlinedIcon />
@@ -293,11 +261,13 @@ export const ContactSection = () => {
                         <MenuItem value="" disabled>
                           <em>Select a category</em>
                         </MenuItem>
-                        <MenuItem value="Outdoor Furniture">Outdoor Furniture</MenuItem>
-                        <MenuItem value="Planters">Planters</MenuItem>
-                        <MenuItem value="Home Decor">Home Decor</MenuItem>
-                        <MenuItem value="Custom Furniture">Custom Furniture</MenuItem>
-                        <MenuItem value="Custom Build">Custom Build</MenuItem>
+                        <MenuItem value="Living room">Living room furniture</MenuItem>
+                        <MenuItem value="Bedroom">Bedroom furniture</MenuItem>
+                        <MenuItem value="Dining">Dining furniture</MenuItem>
+                        <MenuItem value="Entryway">Entryway furniture</MenuItem>
+                        <MenuItem value="Office">Office furniture</MenuItem>
+                        <MenuItem value="Collection piece">A piece from the collection</MenuItem>
+                        <MenuItem value="Custom Build">A custom idea or design</MenuItem>
                         <MenuItem value="Other">Other</MenuItem>
                       </Select>
                     </FormControl>
@@ -331,6 +301,41 @@ export const ContactSection = () => {
               )}
             </Box>
           </Fade>
+          <Box
+            sx={(theme) => ({
+              backgroundColor: theme.palette.background.paper,
+              borderRadius: 3,
+              overflow: 'hidden',
+              border: '1px solid',
+              borderColor: 'divider',
+              boxShadow: theme.shadows[2],
+            })}
+          >
+            <Box
+              component="iframe"
+              title="Frontline Crafted service area map"
+              src="https://www.google.com/maps?q=Weatherford,+TX&z=10&output=embed"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              sx={{
+                width: '100%',
+                height: { xs: 280, md: 340 },
+                border: 0,
+                display: 'block',
+              }}
+            />
+
+            <Box sx={{ p: 2.5 }}>
+              <Typography variant="h6" sx={{ mb: 0.5 }}>
+                Proudly serving Weatherford and surrounding areas
+              </Typography>
+
+              <Typography variant="body2" color="text.secondary">
+                Custom woodworking for Weatherford, Aledo, Fort Worth, Hudson Oaks, Willow Park,
+                Springtown, Azle, and nearby communities.
+              </Typography>
+            </Box>
+          </Box>
         </Stack>
       </Container>
     </Box>

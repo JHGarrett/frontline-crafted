@@ -27,6 +27,8 @@ export const Footer = ({ year }: FooterProps) => {
           <Stack
             direction={{ xs: 'column', sm: 'row' }}
             spacing={{ xs: 1, sm: 3 }}
+            useFlexGap
+            flexWrap="wrap"
             alignItems={{ xs: 'flex-start', sm: 'center' }}
           >
             <Link
@@ -45,6 +47,19 @@ export const Footer = ({ year }: FooterProps) => {
               variant="body2"
             >
               john@frontlinecrafted.com
+            </Link>
+            <Link href="/#faq" underline="hover" color="text.secondary" variant="body2">
+              Frequently asked questions
+            </Link>
+            <Link
+              href="https://www.facebook.com/frontlinecrafted"
+              target="_blank"
+              rel="noopener noreferrer"
+              underline="hover"
+              color="text.secondary"
+              variant="body2"
+            >
+              Follow the shop on Facebook
             </Link>
           </Stack>
         </Stack>
