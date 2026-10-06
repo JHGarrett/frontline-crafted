@@ -9,6 +9,7 @@ export type Product = {
   eyebrow?: string;
   badge?: string;
   priceLabel?: string;
+  designCredit?: string;
 };
 
 export type ValueProp = {

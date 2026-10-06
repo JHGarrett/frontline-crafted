@@ -93,6 +93,8 @@ import type { Product } from '../types';
 export const featuredProducts: Product[] = [
   {
     title: 'The Atlas',
+    designCredit:
+      'Original design by Foureyes Furniture. Handcrafted and customized by Frontline Crafted.',
     category: 'Living room',
     eyebrow: 'Sculptural Coffee Table',
     badge: 'Made to order',
@@ -124,6 +126,8 @@ export const featuredProducts: Product[] = [
   },
   {
     title: 'The Belmont',
+    designCredit:
+      'Original design by Foureyes Furniture. Handcrafted and customized by Frontline Crafted.',
     category: 'Bedroom',
     eyebrow: 'Custom Dresser',
     badge: 'Made to order',
@@ -160,6 +164,8 @@ export const featuredProducts: Product[] = [
 
   {
     title: 'The Rowan',
+    designCredit:
+      'Original design by Foureyes Furniture. Handcrafted and customized by Frontline Crafted.',
     category: 'Entryway',
     eyebrow: 'Custom Wall Organizer',
     badge: 'Made to order',
@@ -197,6 +203,8 @@ export const featuredProducts: Product[] = [
 
   {
     title: 'The Bennett',
+    designCredit:
+      'Original design by Foureyes Furniture. Handcrafted and customized by Frontline Crafted.',
     category: 'Dining',
     eyebrow: 'Custom Dining Chair',
     badge: 'Made to order',
@@ -235,6 +243,8 @@ export const featuredProducts: Product[] = [
 
   {
     title: 'The Hollis',
+    designCredit:
+      'Original design by Foureyes Furniture. Handcrafted and customized by Frontline Crafted.',
     category: 'Living room',
     eyebrow: 'Custom Lounge Chair',
     badge: 'Made to order',
@@ -273,6 +283,8 @@ export const featuredProducts: Product[] = [
 
   {
     title: 'The Carrington',
+    designCredit:
+      'Original design by Foureyes Furniture. Handcrafted and customized by Frontline Crafted.',
     category: 'Dining',
     eyebrow: 'Custom Dining Table',
     badge: 'Made to order',
@@ -356,6 +368,8 @@ export const featuredProducts: Product[] = [
 
   {
     title: 'The Arden',
+    designCredit:
+      'Original design by Foureyes Furniture. Handcrafted and customized by Frontline Crafted.',
     category: 'Entryway',
     eyebrow: 'Custom Console Table',
     badge: 'Made to order',
@@ -394,6 +408,8 @@ export const featuredProducts: Product[] = [
 
   {
     title: 'The Marlowe',
+    designCredit:
+      'Original design by Foureyes Furniture. Handcrafted and customized by Frontline Crafted.',
     category: 'Bedroom',
     eyebrow: 'Custom Nightstand',
     badge: 'Made to order',
@@ -433,6 +449,8 @@ export const featuredProducts: Product[] = [
 
   {
     title: 'The Langston',
+    designCredit:
+      'Original design by Foureyes Furniture. Handcrafted and customized by Frontline Crafted.',
     category: 'Office',
     eyebrow: 'Custom Executive Desk',
     badge: 'Made to order',
@@ -471,6 +489,8 @@ export const featuredProducts: Product[] = [
 
   {
     title: 'The Beaumont',
+    designCredit:
+      'Original design by Foureyes Furniture. Handcrafted and customized by Frontline Crafted.',
     category: 'Bedroom',
     eyebrow: 'Custom Dresser',
     badge: 'Made to order',
@@ -508,6 +528,8 @@ export const featuredProducts: Product[] = [
   },
   {
     title: 'The Brazos',
+    designCredit:
+      'Original design by Foureyes Furniture. Handcrafted and customized by Frontline Crafted.',
     category: 'Dining',
     eyebrow: 'Custom Dining Table',
     badge: 'Made to order',

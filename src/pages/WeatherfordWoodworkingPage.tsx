@@ -62,7 +62,7 @@ export const WeatherfordWoodworkingPage = () => {
 
           <Typography variant="body1" color="text.secondary">
             We build practical, durable, and attractive pieces designed for everyday use. Explore
-            original designs or bring your sketches, inspiration photos, or ideas. We’ll plan the
+            our collection or bring your sketches, inspiration photos, or ideas. We’ll plan the
             dimensions, materials, and details together to create furniture that fits your space.
           </Typography>
 

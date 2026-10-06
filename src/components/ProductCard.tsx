@@ -128,6 +128,12 @@ export const ProductCard = ({ product, onSelect }: ProductCardProps) => {
             >
               {product.description}
             </Typography>
+
+            {product.designCredit ? (
+              <Typography sx={{ color: 'text.secondary', fontSize: '0.8rem', lineHeight: 1.6 }}>
+                {product.designCredit}
+              </Typography>
+            ) : null}
           </Stack>
 
           <Stack
