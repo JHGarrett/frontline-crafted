@@ -164,7 +164,7 @@ export const featuredProducts: Product[] = [
     category: 'Entryway',
     eyebrow: 'Custom Wall Organizer',
     badge: 'Made to order',
-    priceLabel: 'Starting at $450',
+    priceLabel: 'Starting at $550',
     video: rowanVideo,
     images: [rowan1, rowan2, rowan3, rowan4, rowan5, rowan6, rowan7],
     description:
@@ -192,7 +192,7 @@ export const featuredProducts: Product[] = [
       'Open shelving and built-in cubby storage',
       'Custom dimensions and shelf layouts; optional hooks available',
       'Multiple wood species and premium hardwood upgrades available',
-      'Starting at $450; final price depends on size, wood, finish, storage layout, and options',
+      'Starting at $550; final price depends on size, wood, finish, storage layout, and options',
     ],
   },
 

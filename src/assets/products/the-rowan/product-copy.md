@@ -1,6 +1,6 @@
 # The Rowan
 
-Custom Wall Organizer · Built to fit your space · Starting at $450
+Custom Wall Organizer · Built to fit your space · Starting at $550
 
 Website copy and specifications are maintained in `src/data/products.ts`.
 
