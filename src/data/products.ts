@@ -55,7 +55,6 @@ import hollis2 from '../assets/products/the-hollis/the-hollis-02.web.jpg';
 import hollis3 from '../assets/products/the-hollis/the-hollis-03.web.jpg';
 import hollis4 from '../assets/products/the-hollis/the-hollis-04.web.jpg';
 import hollis5 from '../assets/products/the-hollis/the-hollis-05.web.jpg';
-import hollis6 from '../assets/products/the-hollis/the-hollis-06.jpeg';
 import hollis7 from '../assets/products/the-hollis/the-hollis-07.web.jpg';
 import hollis8 from '../assets/products/the-hollis/the-hollis-08.web.jpg';
 import hollis9 from '../assets/products/the-hollis/the-hollis-09.web.jpg';
@@ -241,18 +240,7 @@ export const featuredProducts: Product[] = [
     badge: 'Made to order',
     priceLabel: 'Starting at $850',
     video: hollisVideo,
-    images: [
-      hollis1,
-      hollis2,
-      hollis3,
-      hollis4,
-      hollis5,
-      hollis6,
-      hollis7,
-      hollis8,
-      hollis9,
-      hollis10,
-    ],
+    images: [hollis1, hollis2, hollis3, hollis4, hollis5, hollis7, hollis8, hollis9, hollis10],
     description:
       'A sculptural solid-hardwood lounge chair with a wide stance, relaxed seating angle, and an exposed frame. Carefully shaped details bring a distinctive presence to a comfortable place to read, relax, or unwind.',
     sections: [
