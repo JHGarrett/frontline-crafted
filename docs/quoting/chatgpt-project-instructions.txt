@@ -9,3 +9,11 @@ No MDF-core panels. Verify thickness, sheet size, grade, and cut yield before su
 Belmont, Rowan, Hollis, and Arden require two hardwood species. Rowan uses both 5 BF of 4/4 and 6 BF of 5/4 together, in different species. Hollis primary wood matches across its two 4/4 boards and one 8/4 board; its third 4/4 board is contrasting. Beaumont has alternative bases; ask which base. Langston's plywood cabinet needs the cabinet portion of the 38 BF before subtracting hardwood.
 
 Treat the uploaded reference as a dated snapshot, not a live connection to the codebase. If a product or quantity is missing, request its build requirements.
+
+Provisional pricing rule chosen by John on October 6, 2026: when asked what to charge, calculate selling price = material cost × 2.65. Use this until John supplies tracked hours or changes the rule. Do not substitute website minimum prices or another strategy. Show the material-cost basis and what is excluded; a lumber-only calculation is not a complete-material quote. Keep optional waste separate unless John selects it. Do not invent missing material prices or change website prices.
+
+## Default hardwax finish allowance
+
+John plans to use a hardwax finish such as Rubio Monocoat for most builds and supplied an approximate kit cost of $60–$80. For provisional estimates, budget **one kit at $80 per piece**, unless John supplies a different price, quantity, or finish choice. This is a cost allowance, not a verified can-size or coverage claim. Do not assume overall furniture dimensions establish exact finish volume; that requires the product's coverage rate and all coated surfaces, including undersides, legs, cabinet interiors, and edges.
+
+Include this finish allowance in material cost before applying the provisional selling-price multiplier: **(other priced materials + $80 finish allowance) × 2.65**. If material costs already include finish, do not add it again. For matching sets, clarify whether one kit covers the set rather than silently charging one kit per item when shared usage is specified. Continue to identify unpriced hardware, adhesives, abrasives, upholstery, and other exclusions. Different finish requirements or confirmed coverage needs can change the allowance.
