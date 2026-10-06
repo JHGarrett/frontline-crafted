@@ -56,7 +56,7 @@ const HomePage = () => {
       </Helmet>
       <HeroSection
         title="Furniture with purpose. Made for you."
-        description="Thoughtful proportions, honest materials, and details worth a closer look. Explore original furniture designs, each handcrafted to fit your home and the way you live."
+        description="Handcrafted furniture for your space, your style, and your budget. Explore the collection or bring me an idea—we can plan a piece together, choosing the size, materials, and details to fit what you want to spend."
         image={coverPhoto}
         video={hollisVideo}
         featuredName="The Hollis"
