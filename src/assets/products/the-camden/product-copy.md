@@ -1,6 +1,6 @@
 # The Camden
 
-Custom Record Player Stand · Built to fit your space · Starting at $750
+Custom Record Player Stand · Built to fit your space · Starting at $1,100
 
 Website copy and specifications are maintained in `src/data/products.ts`.
 

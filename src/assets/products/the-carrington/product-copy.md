@@ -1,6 +1,6 @@
 # The Carrington
 
-Custom Dining Table · Built to fit your space · Starting at $900
+Custom Dining Table · Built to fit your space · Starting at $1,100
 
 Website copy and specifications are maintained in `src/data/products.ts`.
 

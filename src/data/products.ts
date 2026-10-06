@@ -128,7 +128,7 @@ export const featuredProducts: Product[] = [
     category: 'Bedroom',
     eyebrow: 'Custom Dresser',
     badge: 'Made to order',
-    priceLabel: 'Starting at $850',
+    priceLabel: 'Starting at $1,250',
     video: belmontVideo,
     images: [belmont1, belmont2, belmont3, belmont4, belmont5, belmont6, belmont7],
     description:
@@ -155,7 +155,7 @@ export const featuredProducts: Product[] = [
       'Standard size: approximately 61½ inches long × 19½ inches deep × 30½ inches tall',
       'Four spacious drawers with furniture-grade inset fronts',
       'Three open cubbies and a raised furniture-style base',
-      'Starting at $850; final price depends on dimensions, materials, finish, hardware, and storage configuration',
+      'Starting at $1,250; final price depends on dimensions, materials, finish, hardware, and storage configuration',
     ],
   },
 
@@ -239,7 +239,7 @@ export const featuredProducts: Product[] = [
     category: 'Living room',
     eyebrow: 'Custom Lounge Chair',
     badge: 'Made to order',
-    priceLabel: 'Starting at $750',
+    priceLabel: 'Starting at $850',
     video: hollisVideo,
     images: [
       hollis1,
@@ -279,7 +279,7 @@ export const featuredProducts: Product[] = [
       'Custom seat positions, lean angles, and cushion options',
       'Fabric and leather upholstery available',
       'Matching ottoman available',
-      'Starting at $750; final price depends on wood, upholstery, finish, sizing, and options',
+      'Starting at $850; final price depends on wood, upholstery, finish, sizing, and options',
     ],
   },
 
@@ -288,7 +288,7 @@ export const featuredProducts: Product[] = [
     category: 'Dining',
     eyebrow: 'Custom Dining Table',
     badge: 'Made to order',
-    priceLabel: 'Starting at $900',
+    priceLabel: 'Starting at $1,100',
     video: carringtonVideo,
     images: [
       carrington1,
@@ -324,7 +324,7 @@ export const featuredProducts: Product[] = [
       'Solid wood construction with a sculptural furniture-style base',
       'Custom dimensions, top thicknesses, tabletop shapes, and edge profiles',
       'Custom base details, wood species, stains, and natural finishes',
-      'Starting at $900; final price depends on size, wood, top thickness, finish, base design, and options',
+      'Starting at $1,100; final price depends on size, wood, top thickness, finish, base design, and options',
     ],
   },
 
@@ -333,7 +333,7 @@ export const featuredProducts: Product[] = [
     category: 'Living room',
     eyebrow: 'Custom Record Player Stand',
     badge: 'Made to order',
-    priceLabel: 'Starting at $750',
+    priceLabel: 'Starting at $1,100',
     video: camdenVideo,
     images: [camden1, camden2, camden3, camden4, camden5],
     description:
@@ -362,7 +362,7 @@ export const featuredProducts: Product[] = [
       'Custom shelf layouts and furniture-grade base construction',
       'Cable management options available',
       'Multiple wood species, premium hardwood upgrades, stains, and natural finishes',
-      'Starting at $750; final price depends on size, wood, storage configuration, finish, hardware, and options',
+      'Starting at $1,100; final price depends on size, wood, storage configuration, finish, hardware, and options',
     ],
   },
 
@@ -371,7 +371,7 @@ export const featuredProducts: Product[] = [
     category: 'Entryway',
     eyebrow: 'Custom Console Table',
     badge: 'Made to order',
-    priceLabel: 'Starting at $750',
+    priceLabel: 'Starting at $850',
     video: ardenVideo,
     images: [arden1, arden2, arden3, arden4, arden5, arden6],
     description:
@@ -400,7 +400,7 @@ export const featuredProducts: Product[] = [
       'Sculpted furniture-style base with a slim 12-inch standard profile',
       'Custom dimensions, drawer configurations, door layouts, and shelf spacing',
       'Multiple wood species, premium hardwood upgrades, stains, and natural finishes',
-      'Starting at $750; final price depends on size, wood, finish, drawer configuration, hardware, and options',
+      'Starting at $850; final price depends on size, wood, finish, drawer configuration, hardware, and options',
     ],
   },
 
@@ -448,7 +448,7 @@ export const featuredProducts: Product[] = [
     category: 'Office',
     eyebrow: 'Custom Executive Desk',
     badge: 'Made to order',
-    priceLabel: 'Starting at $650',
+    priceLabel: 'Starting at $950',
     video: langstonVideo,
     images: [langston1, langston2, langston3, langston4, langston5, langston6],
     description:
@@ -477,7 +477,7 @@ export const featuredProducts: Product[] = [
       'Architectural angled legs and a raised drawer cabinet',
       'Single- or double-sided cabinet options and an optional privacy panel',
       'Custom drawer configurations, smooth slides, wood species, finishes, and hardware',
-      'Starting at $650; final price depends on size, wood, cabinet configuration, finish, drawer hardware, and options',
+      'Starting at $950; final price depends on size, wood, cabinet configuration, finish, drawer hardware, and options',
     ],
   },
 
@@ -486,7 +486,7 @@ export const featuredProducts: Product[] = [
     category: 'Bedroom',
     eyebrow: 'Custom Dresser',
     badge: 'Made to order',
-    priceLabel: 'Starting at $850',
+    priceLabel: 'Starting at $1,100',
     video: beaumontVideo,
     images: [beaumont1, beaumont2, beaumont3, beaumont4, beaumont5, beaumont6, beaumont7],
     description:
@@ -515,7 +515,7 @@ export const featuredProducts: Product[] = [
       'Enclosed cabinet storage with adjustable interior shelving',
       'Raised furniture-style base with multiple designs available',
       'Custom dimensions, layouts, wood species, stains, paint, pulls, and hardware',
-      'Starting at $850; final price depends on size, wood, finish, drawer slides, hardware, base design, and options',
+      'Starting at $1,100; final price depends on size, wood, finish, drawer slides, hardware, base design, and options',
     ],
   },
   {

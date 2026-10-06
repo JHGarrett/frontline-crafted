@@ -1,6 +1,6 @@
 # The Hollis
 
-Custom Lounge Chair · Built to fit your space · Starting at $750
+Custom Lounge Chair · Built to fit your space · Starting at $850
 
 Website copy and specifications are maintained in `src/data/products.ts`.
 

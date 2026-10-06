@@ -1,6 +1,6 @@
 # The Beaumont
 
-Custom Dresser · Built to fit your space · Starting at $850
+Custom Dresser · Built to fit your space · Starting at $1,100
 
 Website copy and specifications are maintained in `src/data/products.ts`.
 

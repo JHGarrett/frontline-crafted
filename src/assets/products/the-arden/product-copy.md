@@ -1,6 +1,6 @@
 # The Arden
 
-Custom Console Table · Built to fit your space · Starting at $750
+Custom Console Table · Built to fit your space · Starting at $850
 
 Website copy and specifications are maintained in `src/data/products.ts`.
 

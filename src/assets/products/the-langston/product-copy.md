@@ -1,6 +1,6 @@
 # The Langston
 
-Custom Executive Desk · Built to fit your space · Starting at $650
+Custom Executive Desk · Built to fit your space · Starting at $950
 
 Website copy and specifications are maintained in `src/data/products.ts`.
 
