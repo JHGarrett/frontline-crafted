@@ -8,31 +8,40 @@ Recorded October 5, 2026, from supplier listings checked during planning. Calcul
 
 This build requires two different hardwood species, such as cherry and walnut; those are examples, not a fixed pairing. Confirm the chosen pairing and which components use each species before quoting.
 
-The supplied 5 BF of 4/4 or 6 BF of 5/4 covers the cabinet pieces, shelf, and back panel previously described as white oak. The second species requires a separate component list, thickness, and board-foot quantity. Existing tables price only the supplied components, not the complete two-species build.
+John clarified on October 6, 2026 that both quantities are used together: 5 BF of 4/4 in one species and 6 BF of 5/4 in a different species. His confirmed example uses 4/4 red oak and 5/4 white oak. This is an example pairing, not a fixed species requirement. The earlier interpretation of these thicknesses as alternative builds is superseded.
 
 ## Build requirements supplied by John
 
-For all cabinet pieces, shelf, and back panel, compare the same quantities in red oak, maple, white oak, and walnut:
+For the cabinet pieces, shelf, and back panel, compare component costs in red oak, maple, white oak, walnut, beech, and cherry:
 
-- Option A: 5 board feet of 4/4 hardwood.
-- Option B: 6 board feet of 5/4 hardwood.
+- 5 board feet of 4/4 hardwood in the first species.
+- 6 board feet of 5/4 hardwood in the second species.
 
-These are alternative builds, not quantities to add together. This estimate covers the specified components only; any contrasting wood, hooks, or other components need separate quantities and pricing.
+Both thicknesses are required together: 11 BF total, or 12.65 BF with optional 15% extra. Choose the appropriate species column independently for each thickness and add those component costs. Hooks and mounting hardware are separate.
 
 ## Cost breakdown
 
-| Material                             | Red oak |  Maple | White oak |  Walnut |  Beech |       Cherry |
-| ------------------------------------ | ------: | -----: | --------: | ------: | -----: | -----------: |
-| 4/4 rate per BF                      |   $2.94 |  $4.49 |     $6.82 |  $14.33 |  $3.79 |        $3.95 |
-| **Option A: 5 BF of 4/4**            |  $14.70 | $22.45 |    $34.10 |  $71.65 | $18.95 |       $19.75 |
-| Optional extra 4/4: 0.75 BF          |   $2.21 |  $3.37 |     $5.12 |  $10.75 |  $2.84 |        $2.96 |
-| **Option A with 15% extra: 5.75 BF** |  $16.91 | $25.82 |    $39.22 |  $82.40 | $21.79 |       $22.71 |
-| 5/4 rate per BF                      |   $3.60 |  $5.50 |     $7.94 |  $15.26 |  $4.62 | Quote needed |
-| **Option B: 6 BF of 5/4**            |  $21.60 | $33.00 |    $47.64 |  $91.56 | $27.72 | Quote needed |
-| Optional extra 5/4: 0.90 BF          |   $3.24 |  $4.95 |     $7.15 |  $13.73 |  $4.16 | Quote needed |
-| **Option B with 15% extra: 6.90 BF** |  $24.84 | $37.95 |    $54.79 | $105.29 | $31.88 | Quote needed |
+| Material                                  | Red oak |  Maple | White oak |  Walnut |  Beech |       Cherry |
+| ----------------------------------------- | ------: | -----: | --------: | ------: | -----: | -----------: |
+| 4/4 rate per BF                           |   $2.94 |  $4.49 |     $6.82 |  $14.33 |  $3.79 |        $3.95 |
+| **4/4 component: 5 BF of 4/4**            |  $14.70 | $22.45 |    $34.10 |  $71.65 | $18.95 |       $19.75 |
+| Optional extra 4/4: 0.75 BF               |   $2.21 |  $3.37 |     $5.12 |  $10.75 |  $2.84 |        $2.96 |
+| **4/4 component with 15% extra: 5.75 BF** |  $16.91 | $25.82 |    $39.22 |  $82.40 | $21.79 |       $22.71 |
+| 5/4 rate per BF                           |   $3.60 |  $5.50 |     $7.94 |  $15.26 |  $4.62 | Quote needed |
+| **5/4 component: 6 BF of 5/4**            |  $21.60 | $33.00 |    $47.64 |  $91.56 | $27.72 | Quote needed |
+| Optional extra 5/4: 0.90 BF               |   $3.24 |  $4.95 |     $7.15 |  $13.73 |  $4.16 | Quote needed |
+| **5/4 component with 15% extra: 6.90 BF** |  $24.84 | $37.95 |    $54.79 | $105.29 | $31.88 | Quote needed |
 
 The optional 15% extra is a purchasing allowance for defects and board selection. Do not automatically add it if the supplied quantities already include waste. Totals use unrounded calculations; rounded line items can differ by a penny. Costs exclude tax, finish, glue, abrasives, wall-mounting hardware, hooks, delivery, labor, and overhead.
+
+## Confirmed two-species example
+
+4/4 red oak: 5 BF × $2.94 = $14.70. 5/4 white oak: 6 BF × $7.94 = $47.64.
+
+- **Lumber total: $62.34 for 11 BF.**
+- **With optional 15% extra: $71.69 for 12.65 BF.**
+
+Uses the saved October 5 rates and excludes supplies, hardware, and tax. Other pairings use the selected species rate for each thickness.
 
 ## Supplier rates and sources
 
